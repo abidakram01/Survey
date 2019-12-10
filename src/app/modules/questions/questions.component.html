@@ -1,0 +1,158 @@
+<div class="w-100 mb-102 mt-5 mobile-no-margin dashbordpadding" >
+  <section class="design-process-section position-relative accountDetails" id="process-tab">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+            <!-- <div class="box margin-top-20">
+              
+            </div> -->
+            <app-dashboard-header></app-dashboard-header>
+            <div class="box">
+              <div class="form-horizontal">
+                <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+                  <div *ngFor="let itemrow of questionForm.get('itemRows').value; let i=index" class="example-box" cdkDrag >                
+                    <div class="box-header margin-top-20">
+                      <!-- <h4 class="head"> </h4> -->
+                    </div>
+                    <div class="box-inner">
+                      <div class="col-md-11">
+                          <div class="form-group row">
+                            <label for="staticEmail" class="col-sm-1 col-form-label"><strong>Q {{ i + 1 }}</strong></label>
+                            <div class="col-sm-7">
+                              <input type="text" class="form-control" [(ngModel)]="itemrow.questName" placeholder="Please enter your question">
+                            </div>
+                            <div class="col-sm-4">
+                              <div class="ry-select">                                
+                                <div (click)="itemrow.isOpen = !itemrow.isOpen" class="form-control ry-input">
+                                  <span>{{itemrow.selectedElement.value}}</span>
+                                  <span class="pull-right"><i class="fa fa-angle-down"></i></span>
+                                </div>
+                                <div *ngIf="itemrow.isOpen" class="ry-dropdown">
+                                  <a class="close" (click)="itemrow.isOpen = false"><i class="fa fa-close"></i></a>
+                                  <a class="ry-grid" *ngFor="let element of itemrow.elementList; let i=index"
+                                  (click)="getSelect(element, itemrow);itemrow.isOpen = false">
+                                    <i class="fa " [ngClass]="element.icon"></i> {{ element.value }}
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+                          </div> 
+                          <div [hidden]="itemrow.isActive" class="ry-ng-contain" >
+                            <ng-container *ngFor="let option of itemrow.options; let j=index">
+                              <div class="form-group row"> 
+                                <label for="inputPassword" class="col-sm-1 col-form-label">             
+                                  <ng-container *ngIf="itemrow.selectedElement.type === 'checkbox'">
+                                    <mat-checkbox></mat-checkbox>
+                                  </ng-container>
+                                  <ng-container *ngIf="itemrow.selectedElement.type === 'radio'">
+                                      <input type="radio" readonly value="{{j}}" >
+                                  </ng-container>
+                                  <ng-container *ngIf="itemrow.selectedElement.type === 'rating'">
+                                      <i class="fa fa-star"></i>
+                                  </ng-container>
+                                </label>
+                                <div class="col-sm-7">
+                                    <ng-container *ngIf="itemrow.selectedElement.type === 'checkbox' || itemrow.selectedElement.type === 'radio' || itemrow.selectedElement.type === 'text' || itemrow.selectedElement.type === 'select'">
+                                        <input type="text" class="form-control" [(ngModel)]="option.optionName" placeholder="Please enter your choice">
+                                    </ng-container>       
+                                    <ng-container *ngIf="itemrow.selectedElement.type === 'number'">
+                                      <input type="number" class="form-control" [(ngModel)]="option.optionName" placeholder="Please enter your number">
+                                   </ng-container>  
+                                    <ng-container *ngIf="itemrow.selectedElement.type === 'textarea'">
+                                        <textarea class="form-control" [(ngModel)]="option.optionName" placeholder="Please enter your choice"></textarea>
+                                    </ng-container>
+                                    <ng-container *ngIf="itemrow.selectedElement.type === 'rating'">
+                                        <select class="form-control" [(ngModel)]="option.optionName">
+                                          <option>Select</option>
+                                          <option>1</option>
+                                          <option>2</option>
+                                          <option>3</option>
+                                          <option>4</option>
+                                          <option>5</option>
+                                          <option>6</option>
+                                        </select>
+                                    </ng-container> 
+                                </div>
+                                <div *ngIf="itemrow.selectedElement.type != 'rating' && itemrow.selectedElement.type != 'textarea'" class="col-sm-4" >
+                                  <a *ngIf="itemrow.options.length < 6" (click)="addNewOption(itemrow)" class="add"><i class="fa fa-plus"></i></a>
+                                  <a (click)="deleteOption(itemrow.options, j)" class="add"><i class="fa fa-minus"></i></a>
+                                </div>
+                              </div>
+                            </ng-container>  
+                            <div class="form-group row">
+                                <div class="col-sm-9 offset-md-1">
+                                  <button type="submit" (click)="saveQuestion(itemrow)" class="btn btn-primary margin-top-10">Save</button>
+                                </div>
+                            </div>                               
+                          </div>                   
+                      </div>
+                      <div class="box-tool">
+                          <a class="tool">
+                            <i class="fa fa-list"></i>
+                          </a>
+                          <a (click)="editQuestion(itemrow)" class="tool">
+                            <i class="fa fa-pencil-square-o"></i>
+                          </a>
+                          <a (click)="copy(itemrow)" class="tool">
+                            <i class="fa fa-file-text-o"></i>
+                          </a>
+                          <a (click)="deleteRow(i)" class="tool">
+                            <i class="fa fa-trash-o"></i>
+                          </a>
+                          <a cdkDragHandle class="tool drag">
+                            <i class="fa fa-arrows"></i>
+                          </a>
+                      </div>
+                      <div *ngIf="itemrow.isActive" class="box-view">
+                        <div class="form-group">
+                          <h5>Q {{i+1}}. {{ itemrow.questName }}</h5>
+                        </div>
+                        <div class="form-group">
+                          <p class="list" *ngFor="let option of itemrow.options">
+                            <ng-container *ngIf="itemrow.selectedElement.type === 'checkbox' || itemrow.selectedElement.type === 'radio'">
+                              <input readonly class="col-sm-4 form-control" class="pull-left" type="{{option.type}}">
+                              <span>{{ option.optionName }}</span>
+                            </ng-container>
+                            <ng-container *ngIf="itemrow.selectedElement.type === 'text' || itemrow.selectedElement.type === 'number'">
+                              <label class="col-sm-3">{{ option.optionName }}</label>
+                              <input readonly class="col-sm-4 form-control" type="{{option.type}}">
+                            </ng-container>
+                            <ng-container *ngIf="itemrow.selectedElement.type === 'textarea'">
+                              <!-- <span class="col-sm-3">{{ option.optionName }}</span> -->
+                              <textarea class="col-sm-7 form-control" readonly></textarea>
+                            </ng-container>
+                            <ng-container *ngIf="itemrow.selectedElement.type === 'rating'">
+                              <div class="star">
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                              </div>
+                            </ng-container>
+                          </p>
+                          <p class="list">
+                            <ng-container *ngIf="itemrow.selectedElement.type === 'select'">
+                              <select class="col-sm-7 form-control" readonly>
+                                <option>Select</option>
+                              </select>
+                            </ng-container>
+                          </p>     
+                        </div>
+                      </div>
+                    </div>
+                  </div> 
+                </div>
+              </div>                       
+            </div>
+            <div class="box-footer">
+              <button type="button" (click)="addNewRow()" class="btn btn-primary">Add new Row</button>
+            </div>          
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+
+

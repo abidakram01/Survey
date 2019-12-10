@@ -1,0 +1,15 @@
+<form [formGroup]="form">
+  <div class="form-wrap box-border">
+    <label class="question-label" style="font-size:18px;" for="">{{question.question}}</label>
+    <ng-container *ngFor="let option of question.options">
+      <div class="form-check">
+        <div class="custom-control custom-checkbox d-block mb-2">
+          <label class="toggle input-group-title">
+            <input type="radio" formControlName="values" [value]="option" id="customCheck-{{option.component_id}}">
+            <span class="label-text " style="font-size:18px;" >{{option.name}}</span>
+          </label>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</form>

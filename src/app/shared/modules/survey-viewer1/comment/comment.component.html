@@ -1,0 +1,12 @@
+<form [formGroup]="form">
+  <div class="form-wrap box-border">
+    <label class="question-label" style="font-size:18px;" for="">{{question.question}}</label>
+    <ng-container formArrayName="values" *ngFor="let value of values.controls; let i = index;">
+        <ng-container [formGroupName]="i">
+          <div class="form-check">
+            <textarea class="form-control" style="font-size:18px;" formControlName="value"></textarea>
+          </div>
+      </ng-container>
+    </ng-container>
+  </div>
+</form>

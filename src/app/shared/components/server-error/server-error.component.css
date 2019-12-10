@@ -1,0 +1,19 @@
+@import '../../../../assets/css/bootstrap.min.css';
+@import '../../../../assets/css/font-style.css';
+@import '../../../../assets/css/styles.css';
+@import '../../../../assets/css/custom.css';
+
+.error-code {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+}
+
+.error h3 {
+  font-family: 'Georgia', 'Arial', 'sans-serif';
+  font-weight: 400;
+  letter-spacing: 1px;
+  font-size: 22px;
+}
+
+.error-desc {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+}

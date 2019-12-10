@@ -1,0 +1,235 @@
+<div class="w-100 mb-102 mt-5 mobile-no-margin dashbordpadding" dir="{{language == 'ar'?'rtl':'ltr'}}">
+  <section class="design-process-section position-relative accountDetails" id="process-tab">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <div class="row">
+            <div class="process">
+              <div class="process-row top-row dashboardbtn">
+                <div class="process-step process-step-top" routerLink="/dashboard" routerLinkActive="active">
+                  <button type="button" class="btn btn-outline-primary btn-circle red-active"> <i class="fas fa-poll-h"
+                      aria-hidden="true"></i></button>
+                  <p class="mb-0"> {{'navbar.labels.my_survey_button' | translate}}</p>
+                </div>
+                <div class="process-step process-step-top" routerLink="/survey/start-survey" routerLinkActive="active">
+                  <button type="button" class="btn btn-outline-primary btn-circle"><i class="fa fa-pencil-square-o"
+                      aria-hidden="true"></i></button>
+                  <p class="mb-0">{{'dash_board_page.create_survey' | translate}}</p>
+                </div>
+                <div class="process-step process-step-top" routerLink="/questions" routerLinkActive="active">
+                  <button type="button" class="btn btn-outline-primary btn-circle"><i class="far fa-question-circle"
+                      aria-hidden="true"></i></button>
+                  <p class="mb-0">{{'dash_board_page.qustaion' | translate}}</p>
+                </div>
+                <div class="process-step process-step-top" routerLink="/survey-feedback" routerLinkActive="active">
+                  <button type="button" class="btn btn-outline-primary btn-circle"><i class="fa fa-eye"
+                      aria-hidden="true"></i></button>
+                  <p class="mb-0">{{'design_survey.preview_survey' | translate}}</p>
+                </div>
+                <div class="process-step process-step-top" routerLink="/survey/share" routerLinkActive="active">
+                  <button type="button" class="btn btn-outline-primary btn-circle"><i class="fa fa-share-alt fa-2x"
+                      aria-hidden="true"></i></button>
+                  <p class="mb-0">{{'dash_board_page.share_survey' | translate}}</p>
+                </div>
+                <div class="process-step process-step-top" routerLink="/survey-result/" routerLinkActive="active">
+                  <button type="button" class="btn btn-outline-primary btn-circle"><i class="fa fa-bar-chart"
+                      aria-hidden="true"></i></button>
+                  <p class="mb-0">{{'dash_board_page.analyze_responses' | translate}}</p>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- 
+  <section class="design-process-section position-relative accountDetails" id="process-tab">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <div *ngIf="surveyCount">
+            <div class="process">
+              <div class="process-row">
+                <div class="process-step">
+                  <div class="col-md-12">
+                    <div class="survey-details-block">
+                      <div class="d-block">
+                        <p class="text-muted m-0">{{'dash_board_page.total_surveys' | translate }} </p>
+                        {{surveyCount.total}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="process-step">
+                  <div class="col-md-12">
+                    <div class="survey-details-block">
+                      <div class="d-block">
+                        <p class="text-muted m-0">{{'dash_board_page.active_surveys' | translate }} </p>
+                        {{surveyCount.active}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="process-step">
+                  <div class="col-md-12">
+                    <div class="survey-details-block">
+                      <div class="d-block">
+                        <p class="text-muted m-0">{{'dash_board_page.draft_survey' | translate }} </p>
+                        {{surveyCount.draft}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="process-step">
+                  <div class="col-md-12">
+                    <div class="survey-details-block">
+                      <div class="d-block">
+                        <p class="text-muted m-0">{{'dash_board_page.deleted_surveys_labels' | translate }} </p>
+                        {{surveyCount.deleted}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section> -->
+
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div *ngIf="userProfile">
+          <div class="table-outer-holder">
+            <table class="table table-bordered mt-5 table-striped surveyTbl" id="surveyTbl"
+              dir="{{language === 'ar'?'rtl':'ltr'}}">
+              <thead class="thead">
+                <tr>
+                  <th>#</th>
+                  <th>{{ "my_surveys_page.title_label" | translate }}</th>
+                  <th>{{ "my_surveys_page.Modified_label" | translate }}</th>
+                  <th>{{ "my_surveys_page.Status_label" | translate }}</th>
+                  <!--<th>Responses</th>-->
+                  <th>{{ "my_surveys_page.Design_label" | translate }}</th>
+                  <!--<th>Collect</th>-->
+                  <th>{{ "my_surveys_page.Analyze_label" | translate }}</th>
+                  <th>{{ "my_surveys_page.Share_label" | translate }}</th>
+                  <th>{{ "my_surveys_page.Delete_label" | translate }}</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let survey of (surveys$ | async); let ndx = index">
+                  <td>{{ndx+1}}</td>
+                  <td>
+                    <a href="javascript:void(0);">{{ survey.name.name_en }}</a>
+                    <!-- <p class="mb-0">
+                      {{ "my_surveys_page.created_label" | translate }} :{{ survey.created_at.$date | date }}
+                    </p> -->
+                  </td>
+                  <td>{{ survey.closes_on | date }}</td>
+                  <td>{{ survey.status }}</td>
+                  <!--<td>0</td>-->
+                  <td>
+                    <a [routerLink]="['/survey/start-survey', survey.id]" data-toggle="tooltip" data-placement="bottom"
+                      title="{{'my_surveys_page.edit_survey_tooltip' | translate }}"><i
+                        class="fa fa-pencil-square-o fa-1x" aria-hidden="true"></i>
+                    </a>
+                  </td>
+                  <!--<td><a href="#0" data-toggle="tooltip" data-placement="bottom" title="Colect Responses"><i class="fa fa-paper-plane-o"
+                  aria-hidden="true"></i></a></td>-->
+                  <td>
+                    <a [routerLink]="['/dashboard/report', survey.id]" data-toggle="tooltip" data-placement="bottom"
+                      title="{{ 'my_surveys_page.analyse_survey_tooltip' | translate }}"><i class="fa fa-bar-chart"
+                        aria-hidden="true"></i></a>
+                  </td>
+                  <td>
+                    <a [routerLink]="['/survey/share', survey.id]" data-toggle="tooltip" data-placement="bottom"
+                      title="{{ 'my_surveys_page.share_your_survey_tooltip' | translate }}"><i class="fa fa-share-alt"
+                        aria-hidden="true"></i></a>
+                  </td>
+                  <td>
+                    <a (click)="deleteSurvey(survey)" data-toggle="tooltip" data-placement="bottom"
+                      title="{{ 'my_surveys_page.delete_survey_tooltip' | translate }}"><i class="fa fa-trash-o"
+                        aria-hidden="true"></i></a>
+                  </td>
+                  <!--<td class="position-relative">
+                  <div class="more-options"> <a class="dropdown-button" href="#0" data-toggle="tooltip" data-placement="bottom"
+                  title="More Options"> <i class="fa fa-ellipsis-h" aria-hidden="true"></i></a>
+                  <ul class="dropdown-list">
+                  <li data-value="Copy"><a href="#0"><i class="fa fa-files-o" aria-hidden="true"></i> Copy Survey</a></li>
+                  <li data-value="Transfer"><a href="#0"><i class="fa fa-exchange" aria-hidden="true"></i> Transfer
+                  Survey</a></li>
+                  <li data-value="add"><a href="#0"><i class="fa fa-plus" aria-hidden="true"></i></a> Add New</li>
+                  <li data-value="Clear"><a href="#0"><i class="fa fa-eraser" aria-hidden="true"></i> Clear Survey</a></li>
+                  <li data-value="Delete"><a href="#0"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete
+                  Survey</a></li>
+                  </ul>
+                  </div>
+                  </td>-->
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!--
+            <div class="container rem-pad" *ngIf="surveys$ | async as surveys">
+            <div class="jumbotron survey-block text-center" *ngIf="surveys.length">
+            <h3>{{'my_surveys_page.generate_share_survey_title' | translate }}</h3>
+            <p>{{'my_surveys_page.generate_share_survey_content' | translate }}</p>
+            <button
+            type="button"
+            class="btn btn-primary companybtn"
+            (click)="openGenerateCode(webLinkPopup)"
+            >
+            {{ "my_surveys_page.generate_code_label" | translate }}
+            </button>
+            </div>
+            </div> -->
+
+        </div>
+      </div>
+      <!-- <div class="col-xl-12 col-sm-12 text-center">
+        <button type="button" class="btn btn-primary companybtn creatbtnpadding" (click)="openCreateSurveyModal()">{{'dash_board_page.create_survey' | translate}}</button>
+      </div> -->
+    </div>
+  </div>
+
+
+
+  <!-- Get Web Link Modal -->
+  <ng-template #webLinkPopup let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">
+        {{ "my_surveys_page.share_link_label" | translate }}
+      </h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body overflow-off">
+      <form method="post">
+        <div class="row">
+          <div class="col">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend" *ngIf="companyShareUrl">
+                <button (click)="copyInputMessage(shareLink)" class="btn btn-success" type="button">
+                  <i class="fa fa-files-o" aria-hidden="true"></i>&nbsp;{{'survey_share.copy_label' | translate}}
+                </button>
+              </div>
+              <input type="text" #shareLink readonly class="form-control share-link-input" [value]="companyShareUrl"
+                aria-label="" aria-describedby="basic-addon1" />
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-dark" ngbAutofocus (click)="modal.close('Close click')">
+        {{ "my_surveys_page.close_label" | translate }}
+      </button>
+    </div>
+  </ng-template>

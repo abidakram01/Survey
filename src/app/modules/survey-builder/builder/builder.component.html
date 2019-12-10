@@ -1,0 +1,72 @@
+<!-- <ng-container *ngFor="let survey of surveyData; trackBy: surveyTrackByFn"> -->
+
+  <ng-container *ngFor="let page of surveyData.pages; trackBy: pageTrackByFn">
+
+    <ng-container *ngFor="let question of page.questions; trackBy: questionTrackByFn">
+
+      <ng-container *ngIf="question.question_type">
+
+        <ng-container [ngSwitch]="question.question_type.question_type">
+          <!-- single-input -->
+          <ng-container *ngSwitchCase="questionType.singleInput">
+            <app-single-input
+              [surveyId]="surveyData.component_id"
+              [pageId]="page.component_id"
+              [question]="this.question"
+              [language]="language"></app-single-input>
+          </ng-container>
+
+          <!-- checkbox -->
+          <ng-container *ngSwitchCase="questionType.checkbox">
+            <app-checkbox
+              [surveyId]="surveyData.component_id"
+              [pageId]="page.component_id"
+              [question]="question"
+              [language]="language"></app-checkbox>
+          </ng-container>
+
+          <!-- multiple-choice -->
+          <ng-container *ngSwitchCase="questionType.multipleChoice">
+            <app-multiple-choice
+              [surveyId]="surveyData.component_id"
+              [pageId]="page.component_id"
+              [question]="question"
+              [language]="language"></app-multiple-choice>
+          </ng-container>
+
+          <!-- dropdown -->
+          <ng-container *ngSwitchCase="questionType.dropdown">
+            <app-dropdown
+              [surveyId]="surveyData.component_id"
+              [pageId]="page.component_id"
+              [question]="question"
+              [language]="language"></app-dropdown>
+          </ng-container>
+
+          <!-- comment -->
+          <ng-container *ngSwitchCase="questionType.comment">
+            <app-comment
+              [surveyId]="surveyData.component_id"
+              [pageId]="page.component_id"
+              [question]="question"
+              [language]="language"></app-comment>
+          </ng-container>
+
+          <!-- rating -->
+          <ng-container *ngSwitchCase="questionType.rating">
+            <app-rating
+              [surveyId]="surveyData.component_id"
+              [pageId]="page.component_id"
+              [question]="question"
+              [language]="language"></app-rating>
+          </ng-container>
+
+        </ng-container>
+
+      </ng-container>
+
+    </ng-container>
+
+  </ng-container>
+
+<!-- </ng-container> -->

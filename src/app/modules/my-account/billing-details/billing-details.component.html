@@ -1,0 +1,126 @@
+<div id="accordion" role="tablist">
+              <div class="card">
+                <div class="card-header" role="tab" id="headingTwo">
+                  <h6 class="mb-0"> <a data-toggle="collapse" href="javascript:void(0);" [class.collapsed]="expandColumn !== 'overview'" [attr.aria-expanded]="expandColumn === 'overview' ? true : false" (click)="expandTab($event)" id="overview" aria-controls="billingOverview"> Billing Overview </a> </h6>
+                </div>
+                <div id="billingOverview" class="collapse" [class.show]="expandColumn === 'overview'" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
+                  <div class="card-body">
+                    <div class="col-md-12 mt-4">
+                      <form>
+                        <div class="form-group row">
+                          <label for="username" class="col-xl-6 col-md-6 col-sm-12 col-form-label  text-xl-right text-md-right text-sm-left font-weight-bold text-muted"> Current Plan :</label>
+                          <div class="col-xl-6 col-md-6 col-sm-12">
+                            <label for="username" class="col-form-label text-right freeLabel "> Free</label>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <div class="col-xl-12 col-md-12 col-xs-12 text-center"> <a href="#pricePlans" class="btn btn-primary btn-sm  mt-3 " data-toggle="modal">Upgrade Account</a> </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-header" role="tab" id="headingTwo">
+                  <h6 class="mb-0"> <a class="collapsed" data-toggle="collapse" href="javascript:void(0);" [class.collapsed]="expandColumn !== 'details'" [attr.aria-expanded]="expandColumn === 'details' ? true : false" (click)="expandTab($event)" id="details" aria-controls="billingDetails"> Billing Deatils </a> <a href="#0" class="pull-right profile-edit-btn"> Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></h6>
+                </div>
+                <div id="billingDetails" class="collapse" [class.show]="expandColumn === 'details'" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
+                  <div class="card-body">
+                    <div class="col-md-12 mt-4">
+                      <form>
+                        <div class="form-group row">
+                          <label for="username" class="col-xl-6 col-md-6 col-sm-12 col-form-label  text-xl-right text-md-right text-sm-left font-weight-bold text-muted"> Billing Email:</label>
+                          <div class="col-xl-6 col-md-6 col-sm-12">
+                            <label for="username" class="col-form-label text-right "> 2215478</label>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label for="username" class="col-xl-6 col-md-6 col-sm-12 col-form-label  text-xl-right text-md-right text-sm-left font-weight-bold text-muted"> First Name :</label>
+                          <div class="col-xl-6 col-md-6 col-sm-12">
+                            <label for="username" class="col-form-label text-right "> Sanoop </label>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label for="username" class="col-xl-6 col-md-6 col-sm-12 col-form-label  text-xl-right text-md-right text-sm-left font-weight-bold text-muted"> Last Name :</label>
+                          <div class="col-xl-6 col-md-6 col-sm-12">
+                            <label for="username" class="col-form-label text-right "></label>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label for="username" class="col-xl-6 col-md-6 col-sm-12 col-form-label  text-xl-right text-md-right text-sm-left font-weight-bold text-muted"> Phone Number:</label>
+                          <div class="col-xl-6 col-md-6 col-sm-12">
+                            <label for="username" class="col-form-label text-right  "> </label>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label for="username" class="col-xl-6 col-md-6 col-sm-12 col-form-label  text-xl-right text-md-right text-sm-left font-weight-bold text-muted">City / Town:</label>
+                          <div class="col-xl-6 col-md-6 col-sm-12">
+                            <label for="username" class="col-form-label text-right  "> </label>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label for="username" class="col-xl-6 col-md-6 col-sm-12 col-form-label  text-xl-right text-md-right text-sm-left font-weight-bold text-muted"> Region / State:</label>
+                          <div class="col-xl-6 col-md-6 col-sm-12">
+                            <label for="username" class="col-form-label text-right  "> </label>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label for="username" class="col-xl-6 col-md-6 col-sm-12 col-form-label  text-xl-right text-md-right text-sm-left font-weight-bold text-muted"> Postcode / Zip:</label>
+                          <div class="col-xl-6 col-md-6 col-sm-12">
+                            <label for="username" class="col-form-label text-right  "> </label>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label for="username" class="col-xl-6 col-md-6 col-sm-12 col-form-label  text-xl-right text-md-right text-sm-left font-weight-bold text-muted"> Country:</label>
+                          <div class="col-xl-6 col-md-6 col-sm-12">
+                            <label for="username" class="col-form-label text-right  "> </label>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label for="username" class="col-xl-6 col-md-6 col-sm-12 col-form-label text-xl-right text-md-right text-sm-left font-weight-bold text-muted"> VAT Number:</label>
+                          <div class="col-xl-6 col-md-6 col-sm-12">
+                            <label for="username" class="col-form-label   "> </label>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-header" role="tab" id="headingThree">
+                  <h6 class="mb-0"> <a class="collapsed" data-toggle="collapse" href="javascript:void(0);" [class.collapsed]="expandColumn !== 'payment'" [attr.aria-expanded]="expandColumn === 'payment' ? true : false" (click)="expandTab($event)" id="payment" aria-controls="paymentsDeatils"> Payment Deatils </a> </h6>
+                </div>
+                <div id="paymentsDeatils" class="collapse" [class.show]="expandColumn === 'payment'" role="tabpanel" aria-labelledby="headingThree" data-parent="#accordion">
+                  <div class="card-body">
+                    <div class="col p-0">
+                      <div class="table-responsive">
+                        <table class="table table-bordered table-striped surveyTbl" id="surveyTbl">
+                          <thead class="thead">
+                            <tr>
+                              <th>Payments #</th>
+                              <th>Payment Date</th>
+                              <th>Description</th>
+                              <th>Status</th>
+                              <th>Amount</th>
+                              <th>Open</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td> 1</td>
+                              <td>01/13/2019</td>
+                              <td>Payments to clients</td>
+                              <td> Paid</td>
+                              <td>10000</td>
+                              <td>Yes</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>

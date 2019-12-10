@@ -1,0 +1,20 @@
+<div class="card">
+  <div class="card-body">
+    <iframe src="https://maps.google.com/maps?q=Al%20Nassr%20Tower%20%7C%20%20Corniche%20Street%20%7C%20Doha%20%7C%20Qatar&t=&z=13&ie=UTF8&iwloc=&output=embed"
+      width="100%" height="200" frameborder="0" style="border:0" allowfullscreen></iframe>
+  </div>
+</div>
+<div class="card mt-3">
+  <div class="card-body">
+   <p *ngIf="language==='en'">  {{ 'contact_us.title_lable.telephone' | translate }}    <i class="fa fa-phone mt-3"></i>  :   +974 4459 1672 </p>
+      <p *ngIf="language==='ar'">  {{ 'contact_us.title_lable.telephone' | translate }}    <i class="fa fa-phone mt-3"></i>  :
+ 1672 4459 0974
+  </p>
+
+ <p  *ngIf="language==='en'"> {{ 'contact_us.title_lable.email' | translate }}  <i class="fa fa-envelope mt-3"></i>   :  info@rayei.qa</p>
+ <p  *ngIf="language==='ar'"> info@rayei.qa  : <i class="fa fa-envelope mt-3"></i> {{ 'contact_us.title_lable.email' | translate }}  </p>
+   <p> {{ 'contact_us.title_lable.location' | translate }}    <i class="fa fa-globe mt-3"></i>  :  {{ 'contact_us.address' | translate }} </p>
+    <p>  {{ 'contact_us.title_lable.office' | translate }}    <i class="far fa-building mt-3"></i>  :  {{ 'contact_us.address_blk2' | translate }}</p><br>
+  <p>  {{ 'contact_us.title_lable.online' | translate }}      <i class="fab fa-internet-explorer"></i>  :   {{ 'contact_us.online' | translate }}</p>
+  </div>
+</div>

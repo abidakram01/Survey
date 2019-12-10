@@ -1,0 +1,56 @@
+<div class="tab-content w-100" id="nav-tabContent">
+  <div class="col-md-12 mt-3">
+    <div class="row justify-content-end">
+      <!-- <div class="col-md-4 normalSelect custom-selectHolder">
+        <select class="form-control custom-select w-75 " name="type">
+          <option selected>(choose)</option>
+          <option value="1">Option 1</option>
+          <option value="1">Option 2</option>
+        </select>
+      </div> -->
+      <!-- <div class="d-inline-block border p-1"> <a href="javascript:void(0);" class="btn btn-border-secondary folder-btn btn-sm p-0"><i class="fa fa-folder-o" aria-hidden="true"></i></a> </div> -->
+    </div>
+  </div>
+
+  <div class="pt-3"></div>
+
+  <div class="col">
+    <div class="row">
+      <div class="table-responsive">
+        <table class="table table-bordered table-striped surveyTbl" id="surveyTbl">
+          <thead class="thead">
+            <tr>
+              <th>Title</th>
+              <th>Modified</th>
+              <!-- <th>Responses</th> -->
+              <th>Share</th>
+              <!-- <th>Analyze</th> -->
+              <th>Delete</th>
+              <th>Disable</th>
+            </tr>
+          </thead>
+          <tbody *ngIf="surveys">
+            <tr *ngFor="let survey of surveys">
+              <td>
+                <a href="javascript:void(0);">{{ survey.name }}</a>
+                <p class="mb-0">Created {{ survey.created_at.$date|date:'dd-MM-yyyy' }}</p>
+              </td>
+              <td>{{ survey.updated_at.$date|date:'dd-MM-yyyy' }}</td>
+              <td><app-share-survey [displayAs]="'icon'" [survey]="survey.url_code"></app-share-survey>
+              </td>
+              <!-- <td><a [routerLink]="['/report']" data-toggle="tooltip" data-placement="bottom" title="Analyze survey"><i class="fa fa-bar-chart" aria-hidden="true"></i></a></td> -->
+              <td><app-delete-survey [survey]="survey.id" (deleted)="onDelete($event)"></app-delete-survey></td>
+              <td><app-disable-survey *ngIf="survey.status === 'active' || survey.status === 'expired'"
+                [survey]="survey.id" [currentStatus]="survey.status === 'active'" 
+                (disabledSurvey)="onSurveyDisable($event)"
+                ></app-disable-survey></td>
+
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <a href="javascript:void(0);" class="btn btn-primary btn-sm float-right rounded-0 mb-3" (click)="openCreateSurveyModal()">
+        &nbsp; Create survey</a>
+      </div>
+  </div>
+</div>

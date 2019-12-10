@@ -1,0 +1,25 @@
+<div class="w-100 m-b-100">
+  <section class="create-survey mt-100">
+    <div class="container pt-5">
+      <h3 class="page-title">{{'cms.list_pages_title' | translate}}</h3>
+      <div *ngFor="let page of pagesData" class="row mb-4">
+        <div *ngIf="language=='ar'" class="border-bottom">
+          <div class="col-xs-12">{{ page.title_ar }}</div>
+          <div class="col-xs-12">{{ page.content.ar | slice: 0 : 150 }} ..</div>
+          <div class="col-xs-12">
+            <a [routerLink]="['/cms/edit-static-page', page.slug]">{{'cms.edit_label' | translate}}</a>/
+            <a (click)="deleteStaticPage( page.slug )" href="javascript:void(0);">{{'cms.delete_label' | translate}}</a>
+          </div>
+        </div>
+        <div *ngIf="language=='en'" class="border-bottom">
+          <div class="col-xs-12">{{ page.title_en }}</div>
+          <div class="col-xs-12">{{ page.content.en | slice : 0 : 150 }} ..</div>
+          <div class="col-xs-12">
+            <a [routerLink]="['/cms/edit-static-page', page.slug]">{{'cms.edit_label' | translate}}</a>/
+            <a (click)="deleteStaticPage( page.slug )" href="javascript:void(0);">{{'cms.delete_label' | translate}}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

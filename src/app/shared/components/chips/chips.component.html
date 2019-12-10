@@ -1,0 +1,6 @@
+<ng-container>
+  <div class="chip"  *ngIf="active">
+    <span (click)="editChip(chip)" >{{ chip }}</span>
+    <span class="closebtn" (click)="deleteChip(chip)">&times;</span>
+  </div>
+</ng-container>

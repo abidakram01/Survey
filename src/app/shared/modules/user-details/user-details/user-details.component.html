@@ -1,0 +1,205 @@
+
+<table style="width: 100%; border: 0; min-width: 400px;">
+        <tr>
+            <td align="center" bgcolor="#ffffff">
+
+                <table style="width: 100%; max-width: 800px; min-width: 400px; border: 1px solid red;">
+
+                    <tr>
+                        <td align="center" bgcolor="#ffffff">
+                            <img src="assets/img/user-logo.jpg" width="100" alt="Logo of Rayei" border="0" style="display: block">
+                            <div style="height: 35px; font-size:10px;">
+                                &nbsp;
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <h2 style="font-size: 25px; background-color:#dc0d0d; text-align: center;"> Personal Details </h2>
+                        </td>
+                    </tr>
+                    <tr *ngIf="formError">
+                        <td>
+                            <h2 style="font-size: 15px; color:#dc0d0d; text-align: center;"> Please fill in all fields with valid values </h2>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <form [formGroup]="userForm" (ngSubmit)="onFormSubmit($event)">
+                                <div>
+                                    <table style="width: 100%">
+                                        <tr>
+                                            <td width="35%">Title <span style="color: red; font-weight: bold;">*</span> (لقب) </td>
+                                            <td>
+                                                <select required formControlName="title">
+                                                    <option value="Mr">Mr</option>
+                                                    <option value="Mrs">Mrs</option>
+                                                    <option value="Sheikh">Sheikh</option>
+                                                    <option value="Dr">Dr</option>
+                                                    <option value="Sir">Sir</option>
+                                                </select>
+                                            </td>
+                                            <td rowspan="4" style="width: 15%; text-align: center; border: 1px solid black;">
+                                            <input type="file"
+      
+                                                (change)="fileChange($event)" 
+                                                placeholder="Photo (الصورة)" 
+                                                accept=".jpd,.png,.jpeg">
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td> Forename <span style="color: red; font-weight: bold;">*</span> (الاسم الأول) </td>
+                                            <td><input type="text" required formControlName="forename"></td>
+                                        </tr>
+
+                                        <tr>
+                                            <td> Surname <span style="color: red; font-weight: bold;">*</span> (اسم العائلة) </td>
+                                            <td><input type="text" required formControlName="surname"></td>
+                                        </tr>
+
+                                        <tr>
+                                            <td> Gender <span style="color: red; font-weight: bold;">*</span> (الجنس) </td>
+                                            <td>
+                                                <select required formControlName="gender">
+                                                    <Option disabled selected>Select</Option>
+                                                    <Option value="Male">Male</Option>
+                                                    <Option value="Female">Female</Option>
+                                                </select>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Date of Birth <span style="color: red; font-weight: bold;">*</span> (تاريخ الولادة) </td>
+                                            <td>
+                                                <input type="date" min="1997-01-01" required formControlName="dob">
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Nationality <span style="color: red; font-weight: bold;">*</span> (الجنسية)</td>
+                                            <td>
+                                                <select required formControlName="nationality">
+                                                    <option disabled selected>Select</option>
+                                                    <option value="British">British</option>
+                                                    <option value="Qatari">Qatari</option>
+                                                    <option value="Indian">Indian</option>
+                                                    <option value="Bangladeshi">Bangladeshi</option>
+                                                    <option value="USA">USA</option>
+                                                    <option value="UAE">UAE</option>
+                                                    <option value="Palestinian">Palestinian</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Country <span style="color: red; font-weight: bold;">*</span> (البلد) </td>
+                                            <td>
+                                                <select required formControlName="country">
+                                                    <option value="" disabled selected>Select</option>
+                                                    <option value="USA">USA</option>
+                                                    <option value="UK">UK</option>
+                                                    <option value="Qatar">Qatar</option>
+                                                    <option value="Bangladesh">Bangladesh</option>
+                                                    <option value="India">India</option>
+                                                    <option value="Other">Other</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>City <span style="color: red; font-weight: bold;">*</span> (مدينة)</td>
+                                            <td>
+                                                <select required formControlName="city">
+                                                    <option value="" disabled selected>Select</option>
+                                                    <option value="Doha">Doha</option>
+                                                    <option value="Al Rayyan">Al Rayyan</option>
+                                                    <option value="Al Wakra">Al Wakra</option>
+                                                    <option value="Umm Salal">Umm Salal</option>
+                                                    <option value="Al Khor">Al Khor</option>
+                                                    <option value="Al Shamal">Al Shamal</option>
+                                                    <option value="Al Daayen">Al Daayen</option>
+                                                    <option value="Al Shahann">Al Shahann</option>
+                                                    <option value="OUTSIDE QATAR">OUTSIDE QATAR</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Language <span style="color: red; font-weight: bold;">*</span> (اللغة)</td>
+                                            <td>
+                                                <select required formControlName="language">
+                                                    <option value="" disbaled selected>Select</option>
+                                                    <option value="English">English</option>
+                                                    <option value="Arabic">Arabic</option>
+                                                    <option value="Hindi">Hindi</option>
+                                                    <option value="French">French</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Mobile <span style="color: red; font-weight: bold;">*</span> (التليفون المحمول)</td>
+                                            <td> +974 <input type="number" max="8" required formControlName="mobile"> </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Personal Email <span style="color: red; font-weight: bold;">*</span> (البريد الإلكتروني)</td>
+                                            <td>
+                                                <input type="email" required formControlName="email">
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Religion <span style="color: red; font-weight: bold;">*</span> (الدين)</td>
+                                            <td>
+                                                <select required formControlName="religion">
+                                                    <option value="" disabled selected>Select</option>
+                                                    <option value="Muslim">Muslim</option>
+                                                    <option value="Christian">Christian</option>
+                                                    <option value="Hindu">Hindu</option>
+                                                    <option value="Other">Other</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td> Marital Status <span style="color: red; font-weight: bold;">*</span> (الحالة الزوجية)</td>
+                                            <td>
+                                                <select required formControlName="status">
+                                                    <option value="" disabled selected>Select</option>
+                                                    <option value="Single">Single</option>
+                                                    <option value="Married">Married</option>
+                                                    <option value="Divorced">Divorced</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+
+                                <div style="margin-top: 15px;">
+                                    <table style="width: 100%">
+                                        <tr *ngIf="serverError">
+                                            <td align="center">
+                                                Some Error Occured.Please try Again
+                                            </td>
+                                    </tr>
+                                        <tr>
+                                            <td align="center">
+                                            
+         <button type="submit" style="font-size: 20px; font-family:Arial, Helvetica, sans-serif; color:white; background-color: #dc0d0d; border-radius: 4px; max-width: 160px; width: 100%; padding-top: 3px; padding-bottom: 3px; box-shadow: 0 0 0 3px black; text-align: center; text-decoration: none;"> Submit </button>
+                                               
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </form>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table> 
+ 

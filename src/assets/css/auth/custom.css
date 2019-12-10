@@ -1,0 +1,24 @@
+.login-with {
+  display: flex;
+}
+.login-with a {
+  display: flex;
+  font-size: 13px;
+  text-align: center!Important;
+}
+
+.login-btn {
+  border: 1px solid #262626;
+ 
+  margin-right: 5px;
+  margin-bottom: 15px;
+  cursor: pointer!Important;
+
+}
+.facebook{
+  width:50%;
+}
+.title-sign-up {
+  color: white;
+  font-weight: bold;
+}

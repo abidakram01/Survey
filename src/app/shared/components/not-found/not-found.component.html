@@ -1,0 +1,16 @@
+<div id="block_error">
+    <div class="error mt-5">
+        <div class="error-code m-b-10 m-t-20">404 <i class="fa fa-warning"></i></div>
+        <h3 class="font-bold mt-5">{{ 'not_found.title' | translate }}</h3>
+        <div class="error-desc">
+            {{ 'not_found.description_1' | translate }} <br/>
+            {{ 'not_found.description_2' | translate }}
+            <div>
+                <a class="btn btn-primary mt-5" [routerLink]="['/']">
+                    <i class="fa fa-arrow-left"></i>
+                    {{ 'not_found.home_link' | translate }}           
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

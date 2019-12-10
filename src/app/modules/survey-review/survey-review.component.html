@@ -1,0 +1,104 @@
+<app-header-survey></app-header-survey>
+<app-dashboard-header></app-dashboard-header>
+<form #loginForm="ngForm">
+  <div class="container review">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <h4 class="heading">IT SURVEY</h4>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+            sed do eiusmod tempor incididunt. 
+        </p>
+      </div>
+      <div class="col-md-12 bg-grey box">
+        <div class="inner-bg" *ngFor="let question of questionList; let quesIndex=index;">
+          <div class="box-inner">
+            <label class="question">{{question.questName}}</label>
+            <div class="answer" [ngSwitch]="question.selectedElement.type">
+              <div *ngSwitchCase="'checkbox'">
+                <div *ngFor="let option of question.options;  let quesOptIndex=index; " class="survey-option">
+                  <mat-checkbox class="example-margin" [name]="quesIndex+'-checkbox-'+quesOptIndex"
+                    [(ngModel)]="option.checked">{{option.optionName}}</mat-checkbox>
+                </div>
+              </div>
+              <div *ngSwitchCase="'radio'">
+                <!-- <div *ngFor="let option of question.options" class="survey-option">
+                  <div class="radio">
+                    <label><input [name]="quesIndex+'-radio'" type="radio" [value]="option.optionName"
+                        [innerHTML]="option.optionName">{{option.optionName}}</label>
+                  </div>
+                </div> -->
+                <mat-radio-group [name]="quesIndex+'-radio'" [(ngModel)]="question.answer">
+                  <mat-radio-button class="radio-margin" *ngFor="let option of question.options"
+                    [value]="option.optionName">
+                    {{option.optionName}}</mat-radio-button>
+                </mat-radio-group>
+              </div>
+              <div *ngSwitchCase="'textbox'" >
+                <div class="survey-option">
+                  <div class="text">
+                    <input [name]="quesIndex+'-text'" [(ngModel)]="question.answer" class="form-control" type="text">
+                  </div>
+                </div>
+              </div>
+              <div *ngSwitchCase="'textarea'">
+                <div class="survey-option">
+                  <div class="text">
+                    <textarea [name]="quesIndex+'-textarea'" [(ngModel)]="question.answer" class="form-control" rows="3"
+                      id="comment"></textarea>
+                  </div>
+                </div>
+              </div>
+              <div *ngSwitchCase="'slider'">
+                <div class="survey-option">
+                  <div class="text">
+                    <mat-slider [name]="quesIndex+'-slider'" class="example-margin" [max]="question.max"
+                      [min]="question.min" [step]="question.step" [(ngModel)]="question.answer">
+                    </mat-slider>
+                  </div>
+                </div>
+              </div>
+              <div *ngSwitchCase="'rating'">
+                <div class="survey-option">
+                  <ng-container *ngFor="let option of question.options; let quesOptIndex=index;">
+                    <button [color]="'accent'" mat-icon-button [id]="quesIndex+'-rating-'+quesOptIndex"
+                      (click)="question.answer=quesOptIndex+1;">
+                      <mat-icon>
+                        {{showIcon(quesOptIndex,question.answer)}}
+                      </mat-icon>
+                    </button>
+                  </ng-container>
+                </div>
+              </div>
+              <div *ngSwitchCase="'dropdown'">
+                <div class="survey-option">
+                  <div class="select">
+                    <mat-select [(ngModel)]="question.answer" [name]="quesIndex+'-select'" placeholder="Select">
+                      <mat-option *ngFor="let option of question.options" [value]="option.optionName">
+                        {{option.optionName}}
+                      </mat-option>
+                    </mat-select>
+                  </div>
+                </div>
+              </div>
+              <div *ngSwitchDefault>
+                <div *ngFor="let option of question.options;  let quesOptIndex=index; " class="survey-option">
+                  <mat-checkbox class="example-margin" [name]="quesIndex+'-checkbox-'+quesOptIndex"
+                    [(ngModel)]="option.checked">{{option.optionName}}</mat-checkbox>
+                  <!-- <label><input type="checkbox" [name]="quesIndex+'-checkbox-'+quesOptIndex"
+                        [(ngModel)]="question.options.checked" [value]="option.optionName">{{option.optionName}}</label>
+                  </div> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12 text-center">
+          <button type="submit" (click)="saveQuestion()" class="btn btn-primary margin-top-10">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+<app-footer-survey></app-footer-survey>

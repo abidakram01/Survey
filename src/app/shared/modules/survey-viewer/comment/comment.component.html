@@ -1,0 +1,15 @@
+<form [formGroup]="form"  class="box" [@scrollAnimation]="state"   (click)="focus()">
+  <div class="form-wrap box-border" style="background-color:#F2F2F2">
+    <label class="question-label" style="font-size:18px; font-weight: bold; " for="">{{question.question}}</label>
+
+    <ng-container formArrayName="values" *ngFor="let value of values.controls; let i = index;" >
+        <ng-container [formGroupName]="i" >
+          <div class="form-check" id="{{question.order}}">
+            <textarea class="form-control" style="font-size:18px;" formControlName="value" ></textarea>
+          </div>
+      </ng-container>
+
+    </ng-container>
+
+    </div>
+</form>

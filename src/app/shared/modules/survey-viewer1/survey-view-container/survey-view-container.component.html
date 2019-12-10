@@ -1,0 +1,160 @@
+ <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark pl-5 pr-5">
+      <a class="navbar-brand" [routerLink]="['/']">
+        <img src="assets/img/rayeilogo.png">
+      </a>
+  <button aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbarCollapse" data-toggle="collapse" type="button">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+      <a class="nav-link" href="#" >
+        <i class="fas fa-desktop" aria-hidden="true"></i>
+      </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+        <i class="fas fa-mobile-alt" aria-hidden="true"></i>
+        </a>
+        </li>
+        </ul>
+        <div class=" mt-2 mt-md-0">
+          <a class="btn btn-outline-success btn-survey my-2 my-sm-0" routerLink="/win/list-survey">{{'survey_preview.btn_title_label' |translate}}</a>
+        </div>
+          </div>
+      </nav>
+
+<ng-container *ngIf="surveyData" >
+  <div class="" [ngClass]="{'container': !isManageSurvey }"  dir="{{selectLangFlag === 'ar'?'rtl':'ltr'}}">
+    <form (ngSubmit)="onSurveyFormSubmit($event)">
+      <div class="card survey-details-bg">
+        <!-- ! TODO: Default Section -->
+        <!-- <div class="p-2 surveyTop mb-3 text-white">
+          <h6>1. Default Section</h6>
+        </div> -->
+        <div class="card-body survayBody">
+            <ng-container *ngIf="surveyData.survey_logo && staticImageUrl">
+              <div class="row">
+                <div class="w-100 text-center mb-3"> <img [src]="staticImageUrl + surveyData.survey_logo" alt="" class="align-center" style="width:250px;"> </div>
+              </div>
+            </ng-container>
+
+            <div class="card-header text-right bg-primary text-white">
+                <!-- <a class="btn btn-primary mr-1 rounded float-right"  data-toggle="tooltip" data-placement="top" title="Exit" routerLink="/"><i class="fa fa-sign-out fa-2x" aria-hidden="true"></i></a> -->
+                <h4>{{surveyData.name}}</h4>
+            </div>
+            <div class="inner-content">
+                <span style="font-size:18px;" [innerHTML]="surveyData.description" class=" text-justify"></span>
+                <!-- Page -->
+              <div class="questions-preview" [class.text-right]="language == 'ar'" *ngFor="let page of surveyData.pages; trackBy: pageTrackByFn">
+                <!-- Question -->
+                <ng-container *ngFor="let question of page.questions; trackBy: questionTrackByFn">
+
+                  <ng-container *ngIf="question.question_type.status">
+                    <ng-container [ngSwitch]="+question.question_type.question_type">
+
+                      <!-- Single Input -->
+                      <ng-container *ngSwitchCase="questionType.singleInput">
+
+                        <app-single-input [question]="question" [questionForm]="questionForm">
+                                <span class="number">1</span>
+                        </app-single-input>
+                      </ng-container>
+
+                      <!-- Checkbox -->
+                      <ng-container *ngSwitchCase="questionType.checkbox">
+                        <app-checkbox [question]="question" [questionForm]="questionForm"></app-checkbox>
+                      </ng-container>
+
+                      <!-- Multiple Choice -->
+                      <ng-container *ngSwitchCase="questionType.multipleChoice">
+                        <app-multiple-choice [question]="question" [questionForm]="questionForm"></app-multiple-choice>
+                      </ng-container>
+
+                      <!-- Dropdown -->
+                      <ng-container *ngSwitchCase="questionType.dropdown">
+                        <app-dropdown [question]="question" [questionForm]="questionForm"></app-dropdown>
+                      </ng-container>
+
+                      <!-- Comment -->
+                      <ng-container *ngSwitchCase="questionType.comment">
+                        <app-comment [question]="question" [questionForm]="questionForm"></app-comment>
+                      </ng-container>
+
+                      <!-- rating -->
+                      <ng-container *ngSwitchCase="questionType.rating">
+                        <app-rating [question]="question" [language]="language" [questionForm]="questionForm"></app-rating>
+                      </ng-container>
+
+                    </ng-container>
+                  </ng-container>
+                </ng-container>
+              </div>
+            </div>
+          <!-- User data collection -->
+          <div class="box-border">
+          <ng-container *ngIf="surveyData.get_user_data && (!userData || isManageSurvey)">
+            <div class="alert alert-default text-center" role="alert" [class.text-right]="language == 'ar'">
+              <h5 style="color: #870d2c;">{{'survey_preview.survey_user_info_label' | translate}}</h5>
+              <form [formGroup]="winSurveyForm">
+                <!-- <div class="form-wrap   mt-1">
+                  <label class="question-label" for="">{{'survey_preview.firstname_label' | translate}}</label>
+                  <input type="text" class="form-control m-auto" [class.is-invalid]="winSurveyForm.get('first_name').invalid && (winSurveyForm.get('first_name').dirty || winSurveyForm.get('first_name').touched)" formControlName="first_name">
+                  <div class="invalid-feedback">
+                    first name cannot be empty
+                  </div>
+                </div> -->
+                <div class="form-wrap mt-1">
+                  <label class="question-label" for="">{{'survey_preview.lastname_label' | translate}}</label>
+                  <input type="text" class="form-control m-auto" [class.is-invalid]="winSurveyForm.get('last_name').invalid && (winSurveyForm.get('last_name').dirty || winSurveyForm.get('last_name').touched)" formControlName="last_name">
+                  <div class="invalid-feedback">
+                    last name cannot be empty
+                  </div>
+                </div>
+                <div class="form-wrap mt-1">
+                  <label class="question-label" for="win-survey-email">{{'survey_preview.email_label' | translate}}</label>
+                  <input type="text" class="form-control m-auto" [class.is-invalid]="winSurveyForm.get('email').invalid && (winSurveyForm.get('email').dirty || winSurveyForm.get('email').touched)" id="win-survey-email" formControlName="email">
+                  <div class="invalid-feedback">
+                    Please enter a valid email address
+                  </div>
+                </div>
+                <div class="form-wrap mt-1">
+                  <label class="question-label" for="win-survey-phone">{{'survey_preview.phone_label' | translate}}</label>
+                  <input type="text" class="form-control m-auto" id="win-survey-phone" pattern="^[0-9\+\-\s]{5,20}$" [class.is-invalid]="winSurveyForm.get('phone').invalid && (winSurveyForm.get('phone').dirty || winSurveyForm.get('phone').touched)" formControlName="phone">
+                  <div class="invalid-feedback">
+                    Please enter a valid phone number
+                  </div>
+                  &nbsp;
+                </div>
+              </form>
+            </div>
+          </ng-container>
+</div>
+			<div class=" p-2 align-self-center text-center d-flex align-items-center" *ngIf="!isManageSurvey">
+				<div class="form__Submit m-auto">
+					<button type="submit" [disabled]="surveyFormSubmitted" class="btn page-title-btn mobile-full-width linkRow"> {{'survey.submit' | translate}} </button>
+				</div>
+				<!-- <div class="form__Submit">
+					<button type="button" [disabled]="surveyFormSubmitted" (click)="skipSurvey()" class="btn page-title-btn mobile-full-width linkRow"> {{'survey.skip' | translate}} </button>
+				</div> -->
+			</div>
+            <div class="container pt-1">
+				<div class="text-center pt-1">
+					<p class="m-0">{{'survey_preview.poweredby_label' | translate}}</p>
+					<img src="assets/img/rayeilogo.png" width="150px">
+					<p>{{'survey_preview.see_how_easty_it_is_to' | translate}} <a  routerLink="/win/list-survey">{{'survey_preview.create_survey_label' | translate}}</a></p>
+					<p><a href="javascript:void(0);">{{'survey_preview.privacy_policy_label' | translate}}</a></p>
+				</div>
+			</div>
+        </div>
+      </div>
+    </form>
+  </div>
+</ng-container>
+
+<!-- Tooltip -->
+<script type="text/javascript">
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+    });
+</script>

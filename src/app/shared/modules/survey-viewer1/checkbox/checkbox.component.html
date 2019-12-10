@@ -1,0 +1,15 @@
+<form [formGroup]="form">
+  <div class="form-wrap box-border" >
+      <label class="question-label" style="font-size:18px;" for="">{{question.question}}</label>
+      <ng-container formArrayName="values" *ngFor="let value of values.controls; let i = index;">
+        <ng-container [formGroupName]="i">
+          <div class="form-check mb-2 ">
+            <div class="custom-control custom-checkbox input-group-title ">
+              <input type="checkbox" class="custom-control-input " name="checkbox-value" value="{{value.get('value').value}}" formControlName="checkbox-value" id="customCheck-{{value.get('component_id').value}}">
+              <label class="custom-control-label " style="font-size:18px;" for="customCheck-{{value.get('component_id').value}}">{{value.get('name').value}}</label>
+            </div>
+          </div>
+        </ng-container>
+      </ng-container>
+    </div>
+</form>

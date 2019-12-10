@@ -1,0 +1,18 @@
+.companybtn{
+	width: 120px;
+    height: 30px;
+    text-align: center;
+    line-height: 1.9;
+    font-size: 15px;
+    color: #fff;
+    background: #ad0203;
+    font-weight: 600;
+}
+
+.pd-22{
+    margin: 15px 0px 0px;
+}
+
+.bottom-border{
+    box-shadow: 0 8px 6px -6px #eeeeee;
+}

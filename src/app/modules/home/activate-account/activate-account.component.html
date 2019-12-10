@@ -1,0 +1,20 @@
+<header class="masthead create-survey mt-5 mb-5">
+  <div class="container h-100">
+    <div class="row h-100">
+      <div class="col-lg-12 display-flex align-middle" *ngIf="status|async; else errorsection">
+        <div class="header-content">
+          <h1><i class="fa fa-check-circle-o success"></i> Your account has been activated.</h1>
+          <h3>Please login to continue</h3>
+          <a [routerLink]="['/']" class="btn btn-primary btn-contact mt-4">Go To Home</a> 
+        </div>
+      </div>
+      <ng-template #errorsection>
+        <div class="col-lg-12 display-flex align-middle">
+          <div class="header-content">
+            <h1><i class="fa  fa-exclamation-triangle error"></i> Please try again.</h1>
+          </div>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</header>

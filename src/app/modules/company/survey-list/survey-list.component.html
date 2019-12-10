@@ -1,0 +1,45 @@
+<div class="w-100 mt-5 pt-3">
+  <div class="page-head-holder">
+    <div class="container">
+      <!--<h3 class="page-title">Client Logos</h3>-->
+    </div>
+  </div>
+</div>
+<div class="w-100">
+  <section class="create-survey mt-5 mb-5">
+    <div class="container pt-5">
+      <div class="row mb-5 pb-5">
+        <div class="col-xl-4 col-md-4 col-xs-6 thumb mt-3" data-tag='primary' *ngFor="let survey of surveys|async">
+          <div class="survey-details-block">
+            <div class="col-xl-12 col-md-12 col-sm-12">
+              <div class="row">
+                <div class="col-2"> <img src="assets/img/survey.svg" class="img-fluid" /> </div>
+                <div class="col-10 p-0">
+                  <h5>{{survey.name}}</h5>
+                  <div class=" small text-secondary">Created :{{survey.created_at.$date | date}} | Modified :
+                    {{survey.updated_at.$date | date}}</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-12 col-md-12 col-sm-12 mt-3">
+              <div class="row">
+                <!-- <div class="col-xl-6 col-sm-6 sm-survey-block"> <strong>Total Responses</strong>0 <span></span> </div>
+                <div class="col-xl-6 col-sm-6 sm-survey-block"> <strong>Total Responses</strong>0 </div>-->
+              </div>
+            </div>
+            <!--
+               <div class="col-xl-12 col-md-12 col-xs-12 thumb mt-3"> <a target="_blank" [routerLink]="['/chooselanguage', survey.url_code]"
+                  class="float-right small">
+              -->
+              <div class="col-xl-12 col-md-12 col-xs-12 thumb mt-3"> <a target="_blank" [routerLink]="['/survey/attend', survey.url_code]"
+                class="float-right small"> Attend Survey</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="!surveys|async">
+      <h3>{{'dash_board_page.no_survey_available' | translate}}</h3>
+    </div>
+  </section>
+</div>

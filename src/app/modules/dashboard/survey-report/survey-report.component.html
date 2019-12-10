@@ -1,0 +1,51 @@
+
+<div class="w-100">
+  <div class="container pt-5" *ngIf="report">
+    <div class="row mt-5" *ngIf="report.total_response !== 0">
+      <div class="col">
+        <div ngbDropdown class="d-inline-block pull-right">
+          <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>{{'survey_report.download' | translate}}</button>
+          <ul ngbDropdownMenu aria-labelledby="dropdownBasic1">
+            <li ngbDropdownItem><a href="{{baseUrl}}reports/{{survey_id}}?file_type=excel">{{'survey_report.excel' | translate}}</a></li>
+            <li ngbDropdownItem><a href="{{baseUrl}}reports/{{survey_id}}?file_type=ppt">{{'survey_report.ppt' | translate}}</a></li>
+            <!-- <li ngbDropdownItem>Something else is here</li> -->
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="row" *ngIf="charts">
+      <div class="col-xl-4 col-md-4  thumb mt-3" *ngFor="let chart of charts">
+        <!-- <h3 class="page-title">Specify Gender</h3>-->
+        <canvas baseChart [datasets]="chart.data" [labels]="chart.label" [options]="chart.option" [legend]="chart.legend"
+          [chartType]="chart.type" >
+        </canvas>
+      </div>
+    </div>
+
+    <div class="col p-0" *ngIf="tables.length > 0">
+        <div class="table-outer-holder" *ngFor="let table of tables">
+        <h4>{{table.question}}</h4>
+          <table class="table table-bordered table-striped surveyTbl col-xl-4 col-md-4  thumb mt-3" id="surveyTbl">
+            <thead class="thead">
+              <tr>
+                <th>{{'survey_report.answers' | translate}}</th>
+                <th>{{'survey_report.count' | translate}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let value of table.answers">
+                <td>{{value.answer}}</td>
+                <td>{{value.count}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    <div class="text-center" *ngIf="report.total_response === 0" style="
+    margin: 105px;
+"> 
+      <h2>{{'survey_report.error_message' | translate}}</h2>
+    </div>
+  </div>
+
+</div>

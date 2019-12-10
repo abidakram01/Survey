@@ -1,0 +1,25 @@
+<div class="w-100">
+  <section class="create-survey mt-5 mb-5">
+    <div class="container pt-5">
+     <!-- <h3 class="page-title">Surveys</h3>-->
+      <div class="row">
+        <div class="col-xl-3 col-md-4 col-xs-6 thumb mt-3" *ngFor="let survey of surveys|async">
+          <a href="#">
+            {{survey.name}}
+          </a>
+        </div>
+        <!-- <div class="col-xl-3 col-md-4 col-xs-6 thumb mt-3"> -->
+          <!-- <a [routerLink]="['/win', company.company_info.user_id, 'surveys']"> -->
+          <!-- <img class="img-thumbnail w-100" [src]="company.logo" [alt]="company.organisation"> -->
+          <!-- <img class="img-thumbnail w-100" [src]="company.company_info.logo" [alt]="company.company_info.organisation"> -->
+          <!-- </a> -->
+        <!-- </div> -->
+      </div>
+    </div>
+  </section>
+   <div class="text-center" *ngIf="!surveys|async" style="
+    margin: 105px;
+"> 
+      <h2>{{'dash_board_page.no_survey_available' | translate}}</h2>
+    </div>
+</div>

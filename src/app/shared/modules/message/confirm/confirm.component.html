@@ -1,0 +1,19 @@
+<div class="modal-header">
+  <h4 class="modal-title">
+    <ng-container *ngIf="data.title">{{data.title}}</ng-container>
+  </h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <h5>
+    <ng-container *ngIf="data.message; else defaultMessage">{{data.message}}</ng-container>
+    <ng-template #defaultMessage>Are you sure about this?</ng-template>
+  </h5>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-dark" ngbAutofocus (click)="confirmModalFeedback(true)">{{yesText}}</button>
+  &nbsp;
+  <button type="button" class="btn btn-dark" (click)="confirmModalFeedback(false)">{{noText}}</button>
+</div>

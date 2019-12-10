@@ -1,0 +1,11 @@
+/* HIDE RADIO */
+[type=radio] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.rating-answer {
+  font-size: 25px;
+}

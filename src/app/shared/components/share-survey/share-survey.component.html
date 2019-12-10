@@ -1,0 +1,37 @@
+<ng-template #icon [ngIf]="displayAs==='icon'" [ngIfElse]="box">
+  <a (click)="openPopup()" data-toggle="modal" data-placement="bottom" title="Share your survey"><i
+      class="fa fa-share-alt" aria-hidden="true"></i></a>
+</ng-template>
+<ng-template #box>
+  <div class="col-lg-4 mbr-col-md-10">
+    <div class="response-block"> <a (click)="openPopup()" class="text-wrap vcenter" data-toggle="modal">
+        <h5> Get Web Link <i class="fa fa-link"></i></h5>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum</p>
+      </a> </div>
+  </div>
+</ng-template>
+
+<ng-template #weblinkPopup  let-modal>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <!-- Modal content-->
+    <div class="modal-content custom-popup">
+      <button type="button" class="close" data-dismiss="modal">×</button>
+      <div class="modal-header">
+        <div style="text-align: center;">
+          <span class="modal-title">Web Link</span>
+        </div>
+      </div>
+      <div class="modal-body">
+        <form method="post">
+          <div class="row">
+            <div class="col">
+              <div class="form-group">
+                <input type="text" name="txtName" class="form-control" placeholder="From" value="{{ baseUrl }}survey/attend/{{survey}}">
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</ng-template>

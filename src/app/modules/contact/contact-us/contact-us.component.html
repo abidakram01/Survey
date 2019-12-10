@@ -1,0 +1,235 @@
+<div class="w-100 mt-5 pt-4">
+  <div class="page-head-holder">
+    <div class="container">
+      <h3 class="page-title"> </h3>
+    </div>
+  </div>
+</div>
+<section class="create-survey mt-5" *ngIf="master">
+  <div class="container pt-5">
+    <div class="row mb-4 mt-0">
+      <section class="divided clearfix w-100">
+        <div class="container">
+          <div class="row py-1">
+            <div class="col col-12 col-sm-12 col-md-6 pt-lg-3 pr-lg-5">
+              <div class="p-1">
+                <div class="row">
+                  <div class="col-md-12 col-sm-12 mb-5">
+                    <div class="mapHolder">
+                      <app-map></app-map>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col col-12 col-sm-12 col-md-6 pt-lg-3 pl-lg-5">
+              <div class="p-1">
+                <form [formGroup]="contactForm" (ngSubmit)="onContactFormSubmit()">
+                  <ngb-alert *ngIf="hasServerError" (close)="hasServerError=false" [type]="'danger'">
+                      {{ 'server_error.title' | translate }}
+                  </ngb-alert>
+                  <ngb-alert *ngIf="contactSuccess" (close)="contactSuccess=false" [type]="'success'">
+                      {{ 'contact_us.success_message' | translate }}
+                  </ngb-alert>
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      name="name"
+                      formControlName="name"
+                      placeholder="{{ 'contact_us.labels.name' | translate }}"
+                      class="form-control"
+                      [class.is-invalid]="name.invalid && (name.dirty || name.touched)"
+                      [class.is-valid]="name.valid && (name.dirty || name.touched)"
+                      />
+                  </div>
+                  <span *ngIf="name.invalid && (name.dirty || name.touched)" class="error-msg">
+                    <span *ngIf="name.hasError('required')">
+                      {{ 'error_message.required_field' | translate }}
+                    </span>
+                  </span>
+
+                  <div class="form-group">
+                    <input
+                      type="email"
+                      name="e-mail"
+                      formControlName="email"
+                      placeholder="{{ 'contact_us.labels.email' | translate }}"
+                      class="form-control"
+                      [class.is-invalid]="email.invalid && (email.dirty || email.touched)"
+                      [class.is-valid]="email.valid && (email.dirty || email.touched)"
+                      />
+                  </div>
+                  <span *ngIf="email.invalid && (email.dirty || email.touched)" class="error-msg">
+                    <span *ngIf="email.hasError('required')">
+                      {{ 'error_message.required_field' | translate }}
+                    </span>
+                    <span *ngIf="email.hasError('email')">
+                      {{ 'error_message.invalid_email' | translate }}
+                    </span>
+                  </span>
+
+                  <div class="form-group">
+                    <input
+                      type="tel"
+                      name="phone"
+                      formControlName="phone"
+                      placeholder="{{ 'contact_us.labels.phone' | translate }}"
+                      class="form-control"
+                      [class.is-invalid]="phone.invalid && (phone.dirty || phone.touched)"
+                      [class.is-valid]="phone.valid && (phone.dirty || phone.touched)"
+                      />
+                  </div>
+                  <span *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="error-msg">
+                    <span *ngIf="phone.hasError('required')">
+                      {{ 'error_message.required_field' | translate }}
+                    </span>
+                    <span *ngIf="phone.hasError('pattern')">
+                      {{ 'contact_us.error.invalid_phone' | translate }}
+                    </span>
+                    <span *ngIf="phone.hasError('maxlength')">
+                      {{ 'contact_us.error.phone_length_error' | translate }}
+                    </span>
+                  </span>
+
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      name="Subject"
+                      formControlName="subject"
+                      placeholder="{{ 'contact_us.labels.subject' | translate }}"
+                      class="form-control"
+                      [class.is-invalid]="subject.invalid && (subject.dirty || subject.touched)"
+                      [class.is-valid]="subject.valid && (subject.dirty || subject.touched)"
+                      />
+                  </div>
+                  <span *ngIf="subject.invalid && (subject.dirty || subject.touched)" class="error-msg">
+                    <span *ngIf="subject.hasError('required')">
+                      {{ 'error_message.required_field' | translate }}
+                    </span>
+                  </span>
+
+                  <div class="form-group">
+                    <div class="form-group custom-selectHolder normalSelect" *ngIf="master && useLang">
+
+                    <div class="wrap-select wrap-select-1" (click)="toggleCategoryDownDown()">
+                      <select
+                        class="form-control"
+                        formControlName="category"
+                        name="category"
+                        [class.is-invalid]="category.invalid && (category.dirty || category.touched)"
+                        [class.is-valid]="category.valid && (category.dirty || category.touched)">
+                        <!--
+                        <option value="Support">
+                          {{ 'contact_us.labels.category_option_1' | translate }}
+                        </option>
+                        <option value="Others">
+                          {{ 'contact_us.labels.category_option_2' | translate }}
+                        </option>
+                        -->
+                        <ng-container>
+                          <option *ngFor="let support_type of master.support_types" value="{{support_type.id}}">
+                            {{support_type[useLang?.name]}}
+                          </option>
+                        </ng-container>
+
+                      </select>
+
+                      <div *ngIf="selectedCategory" class="custom-select" [ngClass]="{'active': categoryDownDownStatus}">
+                        {{selectedCategory}}
+                      </div>
+                      <div *ngIf="!selectedCategory" class="custom-select" [ngClass]="{'active': categoryDownDownStatus}">
+                        {{ 'contact_us.labels.category_option_default' | translate }}
+                      </div>
+                      <ul class="custom-select-items" [ngClass]="{'d-block': categoryDownDownStatus, 'd-none': !categoryDownDownStatus}">
+                        <!--
+                        <li (click)="onCategorySelect("+{{ 'contact_us.labels.category_option_1' | translate }}+")">
+                            {{ 'contact_us.labels.category_option_1' | translate }}
+                        </li>
+                        <li (click)="onCategorySelect({{ 'contact_us.labels.category_option_2' | translate }})">
+                            {{ 'contact_us.labels.category_option_2' | translate }}
+                        </li>
+                        -->
+                        <li *ngFor="let support_type of master.support_types" class="{{language === 'ar'?'text-right':'text-left'}}" (click)="onCategorySelect(support_type)" value="{{support_type.id}}">
+                          {{support_type[useLang?.name]}}
+                        </li>
+
+                      </ul>
+                      <!--
+                      <select
+                        formControlName="category"
+                        class="form-control custom-select"
+                        name="category"
+                        [class.is-invalid]="category.invalid && (category.dirty || category.touched)"
+                        [class.is-valid]="category.valid && (category.dirty || category.touched)"
+                        >
+                        <option value="">
+                          {{ 'contact_us.labels.category' | translate }}
+                        </option>
+                        <option value="Support">
+                          {{ 'contact_us.labels.category_option_1' | translate }}
+                        </option>
+                        <option value="Others">
+                          {{ 'contact_us.labels.category_option_2' | translate }}
+                        </option>
+                      </select>
+
+                      <div class="custom-select" [ngClass]="{'active': categoryDownDownStatus}">{{selectedCategory}}</div>
+                      <ul class="custom-select-items" [ngClass]="{'d-block': categoryDownDownStatus, 'd-none': !categoryDownDownStatus}">
+                        <li (click)="onCategorySelect('Support')" value="Support">
+                          {{ 'contact_us.labels.category_option_1' | translate }}
+                        </li>
+                        <li (click)="onCategorySelect('Others')" value="Others">
+                          {{ 'contact_us.labels.category_option_2' | translate }}
+                        </li>
+                      </ul>
+                      -->
+                      </div>
+                    </div>
+                  </div>
+                  <span *ngIf="category.invalid && (category.dirty || category.touched)" class="error-msg">
+                    <span *ngIf="category.hasError('required')">
+                      {{ 'error_message.required_field' | translate }}
+                    </span>
+                  </span>
+
+                  <div class="form-group">
+                    <textarea
+                      formControlName="message"
+                      name="text"
+                      id=""
+                      rows="8"
+                      placeholder="{{ 'contact_us.labels.message' | translate }}"
+                      class="form-control"
+                      [class.is-invalid]="message.invalid && (message.dirty || message.touched)"
+                      [class.is-valid]="message.valid && (message.dirty || message.touched)"
+                      ></textarea>
+                  </div>
+                  <span *ngIf="message.invalid && (message.dirty || message.touched)" class="error-msg">
+                    <span *ngIf="message.hasError('required')">
+                      {{ 'error_message.required_field' | translate }}
+                    </span>
+                  </span>
+                  <div class="form-group">
+                    <input type="file"
+
+                    (change)="fileChange($event)"
+                    placeholder="Upload file"
+                    accept=".pdf,.doc,.docx,.txt">
+                  </div>
+                  <div class="form-group">
+                    <input
+                      class="form-control custom-file-upload"
+                      [disabled]="submitted"
+                      type="submit"
+                      class="btn btn-primary"
+                      value="{{ 'contact_us.labels.submit' | translate }}" />
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,22 @@
+<form [formGroup]="form" class="box" [@scrollAnimation]="state"   (click)="focus()" >
+  <div class="form-wrap box-border" style="background-color:#F2F2F2 ">
+    <label class="question-label" style="font-size:18px; font-weight: bold;" for="">{{question.question}}</label>
+    <div class="form-check rating-answer"  id="{{question.order}}">
+      <ng-container *ngFor="let option of question.options; let i=index;">
+        &nbsp;
+        <label class="toggle " style="font-size:40px; color: #F5A623;" >
+          <input type="radio"  [value]="option" formControlName="values" id="customCheck-{{option.component_id}}" >
+          &nbsp;
+               <span
+            class="label-text   input-group-title"
+            [ngClass]="{' fa fa-frown-o': selectedIndex === -1 || i > selectedIndex,  'fas fa-smile-beam': i <= selectedIndex}"
+            (click)="onRatingSelection(i)"  ></span>
+
+
+
+
+        </label>
+      </ng-container>
+    </div>
+  </div>
+</form>

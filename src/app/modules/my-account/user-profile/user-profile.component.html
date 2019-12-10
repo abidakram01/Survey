@@ -1,0 +1,290 @@
+<form [formGroup]="userForm" (ngSubmit)="onFormSubmit()">
+  <div id="profileInfo" role="tablist" *ngIf="master && profileData">
+    <div class="card">
+      <div class="card-header" role="tab" id="headingOne">
+        <h6 class="mb-0"> <a href="javascript:void(0);" [class.collapsed]="expandColumn !== 'personal'"
+            [attr.aria-expanded]="expandColumn === 'personal' ? true : false" (click)="expandTab($event)"
+            aria-controls="personalInfo" id="personal">
+            {{'my_account.profile.personal_Info_label' | translate }}</a> </h6>
+      </div>
+
+      <div role="tabpanel" aria-labelledby="headingOne" data-parent="#profileInfo"
+        dir="{{languagedir === 'ar'?'rtl':'ltr'}}">
+        <div class="card-body">
+          <div class="col-md-12">
+            <div class="row">
+
+              <!-- Info Profile -->
+              <div class="col-xl-10 col-md-8">
+                <div class="row">
+                  <div class="col-md-12 mobile-no-padding">
+                    <!-- Title -->
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label for="title" class="col-md-3">{{'my_account.profile.title_label' | translate }}</label>
+                          <select class="form-control  custom-select col-md-9" id="title" name="title"
+                            formControlName="title">
+                            <option value="{{title.id}}" *ngFor="let title of master.titles">{{title[useLang?.name]}}
+                            </option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <!--  -->
+                    <!-- Forename -->
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group custom-selectHolder normalSelect">
+                          <label class="col-md-3"
+                            for="fullname">{{'my_account.profile.forname_label' | translate }}</label>
+                          <input type="text" formControlName="forename" class="form-control col-md-9" id="ForeName"
+                            aria-describedby="emailHelp"
+                            placeholder="{{'my_account.profile.forname_label' | translate }}">
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Surname  -->
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label class="col-md-3"
+                            for="fullname">{{'my_account.profile.surname_label' | translate }}</label>
+                          <input type="text" formControlName="surname" class="col-md-9 form-control" id="SurName"
+                            aria-describedby="emailHelp"
+                            placeholder="{{'my_account.profile.surname_label' | translate }}">
+
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label for="gender"
+                            class="col-md-3">{{'my_account.profile.gender_label' | translate }}</label>
+                          <select class="form-control  custom-select col-md-9" id="gender" name="gender"
+                            formControlName="gender">
+                            <option value="{{gender.id}}" *ngFor="let gender of master.genders">
+                              {{gender[useLang?.name]}}</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Date of Birth  -->
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group"  >
+                          <label for="dateofBirth"
+                            class="col-md-3">{{'my_account.profile.dob_label' | translate }}</label>
+                          <input type="date" formControlName="dob" class="col-md-9 form-control" id="dateofBirth">
+
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Nationality  -->
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label for="nationality"
+                            class="col-md-3">{{'my_account.profile.nationality_label' | translate }}</label>
+                          <select class="form-control  custom-select col-md-9" id="nationality" name="nationality"
+                            formControlName="nationality">
+                            <option value="{{nationalities.id}}" *ngFor="let nationalities of master.nationalities">
+                              {{nationalities[useLang?.name]}}</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Marital Status -->
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label for="martial_status"
+                            class="col-md-3">{{'my_account.profile.maritalstatus' | translate }}</label>
+                          <select class="form-control  custom-select col-md-9" id="martial_status" name="martial_status"
+                            formControlName="martial_status">
+                            <option value="{{martial_status.id}}"
+                              *ngFor="let martial_status of master.marital_statuses">{{martial_status[useLang?.name]}}
+                            </option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- institutes-->
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label for="education_institute"
+                            class="col-md-3">{{'my_account.profile.institution_label' | translate }}</label>
+                          <select class="form-control  custom-select col-md-9" id="education_institute"
+                            name="education_institute" formControlName="education_institute">
+                            <option value="{{Institute.id}}" *ngFor="let  Institute of master.institutes">
+                              {{Institute[useLang?.name]}}</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Employment Status -->
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label for="employment_status"
+                            class="col-md-3">{{'my_account.profile.employment_status' | translate }}</label>
+                          <select class="form-control  custom-select col-md-9" id="employment_status"
+                            name="employment_status" formControlName="employment_status">
+                            <option value="{{employment_status.id}}" *ngFor="let employment_status of master.employment_status">
+                              {{employment_status[useLang?.name]}}</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Religion -->
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label for="language"
+                            class="col-md-3">{{'my_account.profile.region_label' | translate }}</label>
+                          <select class="form-control  custom-select col-md-9" id="religion" name="religion"
+                            formControlName="religion">
+                            <option value="{{religion.id}}" *ngFor="let religion of master.religions">
+                              {{religion[useLang?.name]}}</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!--Language  -->
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label for="language"
+                            class="col-md-3">{{'my_account.profile.language_label' | translate }}</label>
+                          <select class="form-control  custom-select col-md-9" id="language" name="language"
+                            formControlName="language">
+                            <option value="{{language.id}}" *ngFor="let language of master.languages">
+                              {{language[useLang?.name]}}</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+
+
+                    <!-- Personal Email -->
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label class="col-md-3"
+                            for="personal_email">{{'my_account.profile.email_label' | translate }}</label>
+                          <input type="text" formControlName="personal_email" class="col-md-9 form-control"
+                            id="personal_email" aria-describedby="emailHelp"
+                            placeholder="{{'my_account.profile.email_label' | translate }}">
+
+                        </div>
+                      </div>
+                    </div>
+
+                    <!--Mobile Operators  -->
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label for="mobile_operator"
+                            class="col-md-3">{{'my_account.profile.mobile_operators' | translate }}</label>
+                          <select class="form-control  custom-select col-md-9" id="mobile_operator"
+                            name="mobile_operator" formControlName="mobile_operator">
+                            <option value="{{mobile_operators.id}}"
+                              *ngFor="let mobile_operators of master.mobile_operators">
+                              {{mobile_operators[useLang?.name]}}</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Mobile -->
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label class="col-md-3"
+                            for="mobile">{{'my_account.profile.mobile_label' | translate }}</label>
+                          <input type="text" formControlName="mobile" class="col-md-9 form-control" id="Mobile"
+                            aria-describedby="emailHelp"
+                            placeholder="{{'my_account.profile.mobile_label' | translate }}">
+
+                        </div>
+                      </div>
+                    </div>
+                    <!-- City -->
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label for="city" class="col-md-3"> {{'my_account.profile.city_label' | translate }}</label>
+                          <select class="form-control  custom-select col-md-9" id="city" name="city"
+                            formControlName="city">
+                            <option value="{{city.id}}" *ngFor="let city of master.cities">{{city[useLang?.name]}}
+                            </option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- resident_country -->
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label for="resident_country"
+                            class="col-md-3">{{'my_account.profile.resident_country' | translate }}</label>
+                          <select class="form-control  custom-select col-md-9" id="resident_country"
+                            name="resident_country" formControlName="resident_country">
+                            <option value="{{country.id}}" *ngFor="let country of master.countries">
+                              {{country[useLang?.name]}}</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- End Info Profie -->
+                  </div>
+                </div>
+              </div>
+              <!-- Image Profile -->
+              <div class="col-xl-2 col-md-4 p-1">
+                <div class="image-container"> <img [src]="croppedImage ? croppedImage: 'http://placehold.it/150x150'"
+                    id="imgProfile" class="img-thumbnail">
+                  <div class="middle">
+                    <input type="button" class="btn btn-primary btn-xs " id="btnChangePicture" value="Change"
+                      (click)="onDisplayModal()">
+                    <input type="file" style="display: none;" id="profilePicture" name="file">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="col text-center mt-3">
+      <button type="submit" class="btn btn-primary companybtn">{{'my_account.save_changes_button' | translate }}</button>
+    </div>
+  </div>
+</form>
+<!--Image crop modal-->
+<ng-template #modalContent let-modal>
+  <div class="file-upload">
+    <input id="custom-input" type="file" (change)="fileChangeListener($event, cropper)">
+  </div>
+  <img-cropper #cropper [image]="data" [settings]="cropperSettings"></img-cropper>
+  <br>
+  <!--<span class="result rounded" *ngIf="data.image" >
+  <img [src]="data.image" [width]="cropperSettings.croppedWidth" [height]="cropperSettings.croppedHeight">
+</span>-->
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark"
+      (click)="deleteImage(modal)">{{'my_account.delete_current_image_label' | translate }}</button>
+    <button type="button" class="btn btn-outline-dark"
+      (click)="saveImage(data, modal)">{{'my_account.save_btn' | translate }}</button>
+  </div>
+</ng-template>

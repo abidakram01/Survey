@@ -1,0 +1,81 @@
+.custom-selectHolder select{
+  display:block !important;
+}
+/* for win in nav bar to work properly */
+/*.show{
+  display: block !important;
+}*/
+/* to show account modal on nav bar*/
+.showUserDropDown{
+  display: block !important;
+}
+
+.menu span, .menu span:before, .menu span:after {
+  width: 33px !important;
+}
+.menu span {
+  margin-left: -20px !important;
+}
+
+.modal {
+  z-index: 10000 !important;
+}
+
+.m-t-100 {
+  margin-top: 100px;
+}
+
+.m-b-100 {
+  margin-bottom: 100px;
+}
+
+.full-width-col {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.error-msg {
+  color: #dc3545;
+}
+
+/*
+**_spacin.scss
+*/
+.mt-5, .my-5 {
+  margin-top:48px !important;
+  margin-top: 3rem !important;
+}
+
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
+}
+
+/* Language Translation related css to align contents of input fields */
+.text-right input {
+  text-align: right;
+}
+
+.text-right input {
+  text-align: right;
+}
+
+.text-right select {
+  direction: rtl;
+}
+
+.text-right .custom-select {
+  text-align: right;
+}
+
+.text-right textarea {
+  text-align: right;
+}
+
+
+
+

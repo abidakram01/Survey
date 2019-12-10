@@ -1,0 +1,7 @@
+:host ::ng-deep .ck-editor__editable {
+    min-height: 100px;
+}
+.error-span {
+    display: block;
+    color: red;
+}

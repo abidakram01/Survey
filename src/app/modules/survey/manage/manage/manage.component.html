@@ -1,0 +1,111 @@
+<div class="w-100 mt-5 pt-4">
+  <div class="page-head-holder">
+    <div class="container">
+      <h3 class="page-title">{{'design_survey.create_survey_title' | translate }}</h3>
+    </div>
+  </div>
+</div>
+<div class="w-100">
+  <section class="create-survey mt-5 mb-102 mobile-no-margin">
+    <div class="container pt-5">
+
+      <!---- Survey Steps ---->
+      <div class="container p-0" style="margin-top:25px;position:relative;">
+        <ol class="show-grid w-100">
+          <!---- Step - Create/Design ---->
+          <li class="first-step text-center"	[ngClass]="{'active': activeTabId === tabIdData.create}">
+            <div class="icon-holder"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i> </div>
+            <div class="media">
+              <div class="pull-left" href="javascript:void(0);">
+                <span class="glyphicon glyphicon-user"></span>
+              </div>
+              <div class="media-body"><strong>{{'design_survey.design_survey_label' | translate }}</strong></div>
+            </div>
+          </li>
+
+          <!---- Step - Preview ---->
+          <li class=" second-step text-center" [ngClass]="{'active': activeTabId === tabIdData.preview}">
+            <div class="icon-holder"> <i class="fa fa-file-text" aria-hidden="true"></i> </div>
+            <div class="media">
+              <div class="pull-left" href="javascript:void(0);">
+                <span class="glyphicon glyphicon-book"></span>
+              </div>
+              <div class="media-body"><strong>{{'design_survey.preview_survey' | translate }}</strong></div>
+            </div>
+          </li>
+
+          <!---- Step - Share ---->
+          <li class=" third-step text-center" [ngClass]="{'active': activeTabId === tabIdData.share}">
+            <div class="icon-holder"><i class="fa fa-share-alt" aria-hidden="true"></i></div>
+            <div class="media">
+              <div class="pull-left" href="javascript:void(0);">
+                <span class="glyphicon glyphicon-dashboard"></span>
+              </div>
+              <div class="media-body"><strong>{{'design_survey.share_survey' | translate }}</strong></div>
+            </div>
+          </li>
+        </ol>
+      </div>
+
+      <!---- Survey Blocks ---->
+      <ng-container [ngSwitch]="activeTabId">
+        <ng-container *ngSwitchCase="tabIdData.create">
+          <!---- Design/Create Survey Block ---->
+          <app-design></app-design>
+        </ng-container>
+
+        <ng-container *ngSwitchCase="tabIdData.preview">
+          <!---- Preview Survey Block ---->
+          <div class="previewSurvey-block mb-5">
+            <div class="row p-0">
+              <div class="col p-0">
+                <div class="pt-2 align-self-center float-left w-100 text-center">
+                  <a href="javascript:void(0);" (click)="onSurveyStepChange(tabIdData.create)" class="btn btn-primary btn-xs page-title-btn rounded-0 previewSurvey-prev">
+                    <i class="fa fa-angle-double-left" aria-hidden="true"></i>&nbsp;{{'design_survey.perevious_label' | translate }}
+                  </a>
+                  &nbsp;
+                  <a href="javascript:void(0);" (click)="onSurveyStepChange(tabIdData.share)" class="btn btn-primary btn-xs page-title-btn rounded-0 previewSurvey">
+                    {{'design_survey.next' | translate }}&nbsp;
+                  </a>
+                </div>
+              </div>
+              <div class="card surveyHolder">
+                <div class="card-body ">
+                  <div class="row justify-content-md-center">
+                    <div class="col-xl-12 col-sm-12 surevyDisp">
+                      <!-- Survey Preview Component -->
+                      <app-preview></app-preview>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col p-0">
+                <div class="pt-2 align-self-center float-left w-100 text-center">
+                  <a href="javascript:void(0);" (click)="onSurveyStepChange(tabIdData.create)" class="btn btn-primary btn-xs page-title-btn rounded-0 previewSurvey-prev">
+                    <i class="fa fa-angle-double-left" aria-hidden="true"></i>&nbsp;{{'design_survey.perevious_label' | translate }}
+                  </a>
+                  &nbsp;
+                  <a href="javascript:void(0);" (click)="onSurveyStepChange(tabIdData.share)" class="btn btn-primary btn-xs page-title-btn rounded-0 previewSurvey">
+                    {{'design_survey.next' | translate }}&nbsp;
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+
+        <ng-container *ngSwitchCase="tabIdData.share">
+          <!---- Share Survey Block ---->
+          <div class="shareSurvey-block mb-5">
+            <!-- Share survey component -->
+            <app-share></app-share>
+            <div class="pt-2 pb-2 align-self-center mb-5 text-center">
+              <a href="javascript:void(0);" (click)="onSurveyStepChange(tabIdData.preview)" class="btn btn-primary btn-xs page-title-btn rounded-0 shareSurvey-prev "><i class="fa fa-angle-double-left" aria-hidden="true"></i>&nbsp;{{'design_survey.perevious_label' | translate }} </a>
+            </div>
+          </div>
+        </ng-container>
+      </ng-container>
+
+    </div>
+  </section>
+</div>

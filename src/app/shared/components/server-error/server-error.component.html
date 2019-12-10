@@ -1,0 +1,17 @@
+<div id="block_error">
+    <div class="error mt-5">
+        <div class="error-code m-b-10 m-t-20">
+            {{ 'server_error.heading' | translate }} <i class="fa fa-warning"></i>
+        </div>
+        <h3 class="font-bold mt-5">{{ 'server_error.title' | translate }}</h3>
+        <div class="error-desc">
+            {{ 'server_error.description' | translate }}
+            <div>
+                <a class="btn btn-primary mt-5" [routerLink]="['/']">
+                    <i class="fa fa-arrow-left"></i>
+                    {{ 'server_error.home_link' | translate }}           
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

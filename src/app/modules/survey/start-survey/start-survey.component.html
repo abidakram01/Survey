@@ -1,0 +1,245 @@
+<div class="container mt-5 mb-102" [class.text-right]="language === 'ar'">
+  <div class="row">
+    <div class="col-md-12 mt-50">
+      <div class="design-process-section position-relative accountDetails" id="process-tab">
+        <div class="col">
+          <div class="row">
+            <div class="process">
+              <div class="process-row top-row dashboardbtn">
+                <div class="process-step process-step-top" routerLink="/dashboard" routerLinkActive="active">
+                  <button type="button" class="btn btn-outline-primary btn-circle"> <i class="fas fa-poll-h fa-2x"
+                      aria-hidden="true"></i></button>
+                  <p class="mb-0"> {{'navbar.labels.my_survey_button' | translate}}</p>
+                </div>
+                <div class="process-step process-step-top" routerLink="/survey/start-survey" routerLinkActive="active">
+                  <button type="button" class="btn btn-outline-primary btn-circle red-active"><i
+                      class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></button>
+                  <p class="mb-0">{{'dash_board_page.create_survey' | translate}}</p>
+                </div>
+                <div class="process-step process-step-top" routerLinkActive="active">
+                  <button type="button" class="btn btn-outline-primary btn-circle"><i
+                      class="far fa-question-circle fa-2x" aria-hidden="true"></i></button>
+                  <p class="mb-0">{{'dash_board_page.qustaion' | translate}}</p>
+                </div>
+                <div class="process-step process-step-top" routerLink="/survey-feedback" routerLinkActive="active">
+                  <button type="button" class="btn btn-outline-primary btn-circle"><i class="fa fa-eye fa-2x"
+                      aria-hidden="true"></i></button>
+                  <p class="mb-0">{{'design_survey.preview_survey' | translate}}</p>
+                </div>
+                <div class="process-step process-step-top" routerLinkActive="active">
+                  <button type="button" class="btn btn-outline-primary btn-circle"><i class="fa fa-share-alt fa-2x"
+                      aria-hidden="true"></i></button>
+                  <p class="mb-0">{{'dash_board_page.share_survey' | translate}}</p>
+                </div>
+                <div class="process-step process-step-top">
+                  <button type="button" class="btn btn-outline-primary btn-circle"><i class="fa fa-bar-chart fa-2x"
+                      aria-hidden="true"></i></button>
+                  <p class="mb-0">{{'dash_board_page.analyze_responses' | translate}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card mt-3">
+          <div class="card-body">
+            <div class="col-md-12">
+              <div class="row">
+                <form class="w-100" name="form" (ngSubmit)="f.form.valid && onSurveyTypeFormSubmit()" #f="ngForm"
+                  novalidate>
+                  <!-- Survey Name -->
+                  <div class="row">
+                    <div class="col-md-6">
+                      <mat-form-field>
+                        <input matInput name="name" [(ngModel)]="newSurveyData.name['name_' + language]"
+                          [placeholder]="'create_survey.survey_name' | translate " required maxlength="100"
+                          #name="ngModel">
+                        <mat-error *ngIf="name.errors?.required">
+                          {{'create_survey.cant_be_empty' | translate }}
+                        </mat-error>
+                      </mat-form-field>
+
+                    </div>
+
+                    <!-- Survey Category -->
+                    <div class="col-md-6">
+                      <mat-form-field>
+                        <mat-select [(ngModel)]="newSurveyData.category" name="category"
+                          [placeholder]="'create_survey.survey_category' | translate" #category="ngModel" required>
+                          <mat-option *ngFor="let surveyCategory of surveyCategoryList" value="surveyCategory.id">
+                            {{surveyCategory['name_' + language]}}</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="category.errors?.required">
+                          {{'create_survey.survey_category_validate' | translate }}
+                        </mat-error>
+                      </mat-form-field>
+
+                    </div>
+                  </div>
+
+                  <!-- Survey Language -->
+                  <div class="row">
+                    <div class="col-md-6">
+                      <mat-form-field>
+                        <mat-select multiple [(ngModel)]="newSurveyData.language" name="sLanguage"
+                          [placeholder]="'create_survey.survey_language' | translate" #sLanguage="ngModel" required>
+                          <mat-option *ngFor="let surveyLanguage of surveyLanguageList" [value]="surveyLanguage.id">
+                            {{surveyLanguage['name_' + language]}}</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="sLanguage.errors?.required">
+                          {{'create_survey.survey_language_validate' | translate }}
+                        </mat-error>
+                      </mat-form-field>
+                    </div>
+
+                    <!-- Survey Service -->
+                    <div class="col-md-6">
+                      <mat-form-field>
+                        <mat-select [(ngModel)]="newSurveyData.survey_type" name="survey_type" placeholder="Service"
+                          #survey_type="ngModel" required>
+                          <mat-option *ngFor="let surveyType of surveyTypes" [value]="surveyType.id">
+                            {{surveyType['name_' + language]}}</mat-option>
+                        </mat-select>
+                        <!-- <mat-error *ngIf="survey_type.errors?.required">
+                          {{'create_survey.survey_category' | translate }}
+                        </mat-error> -->
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <!-- Survey Private -->
+                    <div class="col-md-6">
+                      <mat-form-field>
+                        <mat-select [(ngModel)]="newSurveyData.is_private" name="is_private" placeholder="Private"
+                          #is_private="ngModel" required>
+                          <mat-option [value]="true">True</mat-option>
+                          <mat-option [value]="false">False</mat-option>
+                        </mat-select>
+                        <!-- <mat-error *ngIf="is_private.errors?.required">
+                          {{'Private ' | translate }}
+                        </mat-error> -->
+                      </mat-form-field>
+
+                    </div>
+                    <!-- Survey No of Question -->
+                    <div class="col-md-6">
+                      <mat-form-field>
+                        <mat-select [(ngModel)]="newSurveyData.country" name="country" placeholder="Country"
+                          #country="ngModel" required>
+                          <mat-option *ngFor="let country of countryList" [value]="country.id">
+                            {{country['name_' + language]}}</mat-option>
+                        </mat-select>
+                        <!-- <mat-error *ngIf="country.errors?.required">
+                          {{'create_survey.cant_be_empty' | translate }}
+                        </mat-error> -->
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <!-- Survey Expiry -->
+                    <!-- <div class="col-md-6">
+                    <div class="form-group">
+                      <label>{{'create_survey.survey_expiry_label' | translate }}</label><br />
+                      <ngb-datepicker formControlName="surveyExpiry" #surveyExpiryRef></ngb-datepicker>
+                    </div>
+                  </div> -->
+
+                    <!-- Survey Time -->
+                    <div class="col-md-6">
+                      <mat-form-field>
+                        <mat-select [(ngModel)]="newSurveyData.duration" name="duration" placeholder="Time"
+                          #duration="ngModel" required>
+                          <mat-option *ngFor="let surveyDuration of surveyDurationList" value="surveyDuration.id">
+                            {{surveyDuration['name_' + language]}}</mat-option>
+                        </mat-select>
+                        <!-- <mat-error *ngIf="duration.errors?.required">
+                          {{'create_survey.cant_be_empty' | translate }}
+                        </mat-error> -->
+                      </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                      <mat-form-field>
+                        <input matInput name="date" #picker [(ngModel)]="newSurveyData.date" [matDatepicker]="picker"
+                          placeholder="Date" #date="ngModel" required>
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                        <!-- <mat-error *ngIf="date.errors?.required">
+                          {{'create_survey.cant_be_empty' | translate }}
+                        </mat-error> -->
+                      </mat-form-field>
+                      <!-- <div class="form-group custom-selectHolder normalSelect date-mb">
+                      <label for="duration">Date</label>
+                    </div>
+                    <nz-date-picker (ngModelChange)="onChange($event)"></nz-date-picker> -->
+                    </div>
+                  </div>
+                  <div class="row mt-3 mb-4">
+                    <div class="col-md-12">
+                      <!-- <div>
+                      <label for="">Description</label>
+                    </div> -->
+                      <mat-form-field>
+                        <textarea matInput name="description"
+                          [(ngModel)]="newSurveyData.description['name_' + language]" #description="ngModel"
+                          placeholder="Description" maxlength="1000"></textarea>
+                        <!-- <mat-error *ngIf="description.errors?.required">
+                          {{'create_survey.cant_be_empty' | translate }}
+                        </mat-error> -->
+                      </mat-form-field>
+                      <!-- <textarea class="description-w form-control" type="checkbox"></textarea> -->
+                    </div>
+                  </div>
+
+                  <div class="row mt-3 mb-4">
+                    <div class="col-md-12">
+                      <div>
+                        <h4><label for="Prizes">{{'win_page.prize' | translate }}</label> </h4>
+                        <mat-checkbox *ngFor="let surveyPrizes of surveyPrizesList; let i = index;"
+                          class="margin-right-10" [ngModel]="surveyPrizes.checked" [name]="surveyPrizes+i"
+                          [checked]="surveyPrizes.checked" value="surveyPrizes.id">
+                          {{surveyPrizes['name_' + language]}}</mat-checkbox>
+                        <!-- <input type="checkbox" value="{{surveyPrizes.id}}" (click)="selectArr(surveyPrizes.id)">
+                        <br> -->
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row mt-3 mb-4">
+                    <div class="col-md-12">
+                      <label class="custom-file-upload">
+                        <input type="file" />
+                        <i class="fa fa-upload" aria-hidden="true"></i> Upload Logo
+                      </label>
+                    </div>
+                  </div>
+                  <!-- User Data Collection -->
+                  <div class="row" dir="{{language == 'ar'?'rtl':'ltr'}}">
+                    <div class="col-md-12">
+                      <div class="form-check">
+                        <input class="form-check-input" name="getUserData" type="checkbox"
+                          [(ngModel)]="newSurveyData.get_user_data" id="getUserData">
+                        <label class="form-check-label" for="defaultCheck1">
+                          {{'create_survey.survey_userdatacollection_check' | translate }}
+                        </label>
+                        <small id="passwordHelpBlock" class="form-text text-muted">
+                          {{'create_survey.userdatacollection_label' | translate }}
+                        </small>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="col-xl-12 col-sm-12 text-center  mt-4 mb-4">
+                    <!-- (click)="onSurveyTypeFormSubmit()" -->
+                    <button type="submit"
+                      class="btn btn-primary companybtn">{{'create_survey.design_survey_btn' | translate }} </button>
+
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>

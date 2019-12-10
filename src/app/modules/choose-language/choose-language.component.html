@@ -1,0 +1,46 @@
+<div class="container mt-5 mb-102" [class.text-right]="language === 'ar'">
+  <div class="pt-5"></div>
+  <div class="card mt-3">
+    <div class="card-body">
+      <div class="col-md-12">
+        <div class="row">
+          <form class="w-100" [formGroup]="surveyLanguageForm" (ngSubmit)="onSurveyTypeFormSubmit()">
+
+                <!-- Survey Language -->
+                <div class="row">
+                <div class="col-md-12">
+                      <div class="form-group custom-selectHolder normalSelect">
+                      <label for="category" class="col-md-2">{{'create_survey.survey_language' | translate }}</label>
+                    <div class="wrap-select wrap-select-1 col-md-6 " (click)="toggleDownDown('language')">
+                      <select class="form-control" formControlName="surveyLanguage">
+                        <ng-container *ngIf="surveyLanguageList">
+                          <option *ngFor="let surveyLanguage of surveyLanguageList" value="{{surveyLanguage.id}}">{{surveyLanguage['name_' + language]}}</option>
+                        </ng-container>
+                      </select>
+
+                      <div class="custom-select" [ngClass]="{'active': surveyLanguageDownDownStatus}">{{selectedLanguageType}}</div>
+                      <ul class="custom-select-items" [ngClass]="{'d-block': surveyLanguageDownDownStatus, 'd-none': !surveyLanguageDownDownStatus}">
+                        <li *ngFor="let surveyLanguage of surveyLanguageList" (click)="onSurveyDropDownSelect('language', surveyLanguage)" value="{{surveyLanguage.id}}">{{surveyLanguage['name_' + language]}}</li>
+                      </ul>
+                      <div class="invalid-feedback" [ngClass]="{'d-block': surveyLanguageControl.invalid && (surveyLanguageControl.touched || surveyLanguageControl.dirty)}">
+                        {{'create_survey.survey_language_validate' | translate }}
+                      </div>
+                    </div>
+                    </div>
+                  </div>
+
+                 </div>
+
+              <div class="row">
+                <div class="col-xl-12 col-sm-12  mt-4 mb-4">
+                   <div class="col-xl-6 col-xl-offset-6 col-sm-6 col-sm-offset-6">
+                    <button type="submit" class="btn btn-primary companybtn">{{'win_page.attend_survey_label' | translate }} </button>
+                   </div>
+                 </div>
+               </div>
+         </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

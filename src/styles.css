@@ -1,0 +1,332 @@
+/* You can add global styles to this file, and also import other style files */
+img {
+    max-width: 100%;
+}
+.box-element{
+    border: 2px solid #f75a5a;
+    padding: 8px 10px 8px;
+    box-shadow: 0 2px 8px #0000001f;
+    float: left;
+    margin: 0 10px 10px;
+    border-radius: 3px;
+    font-weight: 500;
+    min-width: 150px;
+    max-width: 200px;
+    font-size: 13px;
+    text-align: center;
+}
+/* .box-element input{
+    float: left;
+} */
+.box-element span{
+    float: left;
+    margin-left: 5px;
+    line-height: 12px;
+}
+.box .box-inner{
+    padding: 25px 20px 20px;
+    background: #f5f5f2;
+    width: 100%;
+    border-radius: 1px;
+    position: relative;
+    z-index: auto;
+    min-height: 190px;
+}
+.box input.form-control, .box select.form-control, .box .ry-input{
+    border: 0;
+    font-size: 13px;
+    padding: 1px 10px;
+    border-radius: 2px;
+    height: 32px;
+}
+.box .btn-primary{
+    background: #f75a5a;
+    color: #fff;
+    border-color: #f75a5a;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 1px;
+    font-family: calibri;
+    padding: .375rem 1.2rem;
+    box-shadow: 0 1px 5px #0000001f;
+}
+.box .col-form-label{
+    font-size: 14px;
+    color: #5a5a54;
+    font-weight: 500;
+    font-family: calibri;
+}
+.box .box-header{
+    width: 100%;
+    border-bottom: 1px solid transparent;
+}
+.box .box-header .head{
+    font-size: 1.3rem;
+    color: #50504a;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+.box .box-inner .add{
+    border: 1px solid #ffa4a4;
+    border-radius: 2px;
+    padding: 5px 8px 3px;
+    margin-top: 1px;
+    display: inline-block;
+    color: #f75a5a;
+    box-shadow: 0 1px 6px #0000001a;
+    margin-right: 5px;
+}
+.box .box-inner .ry-select{
+    width: 100%;
+    padding: 0;
+    position: relative;
+}
+.box .box-inner .ry-select .ry-input{
+    background: #fff;
+    display: block;
+    padding: 9px;
+}
+.box .box-inner .ry-dropdown, .cdk-drag-preview .ry-dropdown{
+    position: absolute;
+    top: 34px;
+    left: 0;
+    width: 300px;
+    height: auto;
+    padding: 10px;
+    z-index: 99;
+    border: 1px solid #efefef;
+    background: #fff;
+    box-shadow: 0 4px 8px #00000012;
+    border-top: 0;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+.box .box-inner .ry-dropdown .ry-grid, .cdk-drag-preview .ry-dropdown .ry-grid{
+    width: 42%;
+    display: inline-block;
+    margin: 0 10px;
+    padding: 5px;
+    font-family: calibri;
+    font-size: 13px;
+}
+.box .box-inner .ry-dropdown .ry-grid .fa, .cdk-drag-preview .ry-dropdown .ry-grid .fa{
+    font-size: 12px;
+    margin-right: 8px;
+}   
+.ry-dropdown .close{
+    position: absolute;
+    top: 7px;
+    right: 7px;
+    font-size: 12px;
+    opacity: 0.8;
+    font-size: 14px;
+}
+.ry-ng-contain i.fa-star{
+    font-size: 19px;
+}
+.box .box-tool, .cdk-drag-preview .box-tool{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 45px;
+    padding: 10px 5px;
+    height: 100%;
+    background: #ecece6;
+    z-index: 9;
+}
+.box .box-tool .tool, .cdk-drag-preview .box-tool .tool{
+    display: block;
+    font-size: 15px;
+    text-align: center;
+    margin-bottom: 10px;
+    color: #8a8a81;
+}
+.box .box-tool .tool.drag, .cdk-drag-preview .box-tool .tool.drag{
+    position: absolute;
+    bottom: -4px;
+    font-size: 18px;
+    z-index: 9;
+    left: 15px;
+    cursor: move;
+}
+.box .box-view, .cdk-drag-preview .box-view{
+    background: #f7f7f1;
+    position: absolute;
+    padding: 20px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+}
+.box .box-view h5{
+    font-size: 16px;
+}
+.box .box-view .list{
+    width: 100%;
+    float: left;
+    margin-bottom: 10px;
+    color: #454545;
+}
+.pull-left {
+    float: left;
+}
+.box .box-view .list span{
+    margin-left: 10px;
+    float: left;
+    margin-top: -3px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 14px;
+}
+.box .box-view .list .star{
+    padding: 15px;
+}
+.box .box-view .list .star .far{
+    margin-right: 15px;
+    font-size: 25px;
+}
+.mat-checkbox-inner-container{
+    margin-top: 3px;
+}
+.box-footer{
+    text-align: center;
+    padding: 10px;
+    border-top: 1px solid #eee;
+}
+.box .heading{
+    margin-bottom: 10px;
+}
+.mat-checkbox{
+    font-family: Calibri, 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif !important;
+}
+.example-list {
+    /* overflow: hidden; */
+  }
+.example-box {
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    background: white;
+}
+  
+  .cdk-drag-preview {
+    box-sizing: border-box;
+    border-radius: 4px;
+    background: #f7f7f1;
+    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+                0 8px 10px 1px rgba(0, 0, 0, 0.14),
+                0 3px 14px 2px rgba(0, 0, 0, 0.12);
+  }
+  
+  .cdk-drag-placeholder {
+    opacity: 0;
+  }
+  
+  .cdk-drag-animating {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  }
+  
+  .example-box:last-child {
+    border: none;
+  }
+  
+  .example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  }
+  textarea.form-control{
+    height: auto;
+    padding: 10px;
+    border: 0;
+    border-radius: 2px;
+  }
+  textarea.form-control[readonly]{
+    border: 0;
+  }
+  /*--------- Review page------*/
+.review{
+    
+}
+.review .heading{
+    margin-bottom: 10px;
+    margin-top: 25px;
+}
+.review .box .box-inner{
+    background: #fdfdfd;
+    box-shadow: 0 1px 3px #00000045;
+    padding: 20px 25px;
+}
+.review .question{
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+.review .answer{
+    width: 80%;
+}
+.review .answer .select{
+    border: 1px solid #eee;
+    border-radius: 3px;
+    padding: 5px 10px;
+    width: 360px;
+}
+.review .answer input[type='text'], .review .answer input[type='number'], .review .answer textarea{
+    border: 1px solid #eee;
+    width: 360px;
+}
+.review .mat-radio-button{
+    display: block;
+    margin-bottom: 3px;
+}
+.review .box .box-inner{
+    min-height: 135px;
+}
+  /*--------- Process Steps------*/
+.process-row {
+    display: inline-block;
+}
+.process {
+	display: block;
+    width: 100%;
+    position: relative;
+    margin-top: 25px;
+    text-align: center;
+}
+.process-step button[disabled] {
+	opacity: 1 !important;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+	filter: alpha(opacity=100) !important;
+}
+.process-step {
+	display: inline-block;
+	text-align: center;
+	position: relative;
+    width: 20%;
+    margin: 0 15px;
+    width: auto;
+    margin-bottom: 10px;
+}
+.process-step button{
+    color: #000;
+}
+.process-step p {
+    margin-top: 10px;
+    color: #000;
+    font-size: 15px;
+}
+.process .btn-outline-primary{
+    border-color: #535658;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid #535658;
+    padding: 0;
+    font-size: 17px;
+    line-height: 15px;
+}
+.process .btn-outline-primary:hover{
+    color: #fff;
+    background-color: #ad0203;
+    border-color: #ad0203;
+}

@@ -1,0 +1,20 @@
+.paroller{
+    margin-right: 0px !important;
+}
+
+.w-30{
+    width: 40%;
+    margin: 0 auto;
+}
+
+.button-dbn{
+    border: 3px solid #ad0203;
+}
+
+.btn-join{
+    width: 75px;
+    background: #ad0203;
+    font-size: 17px;
+    color: #fff;
+    font-weight: 900;
+}

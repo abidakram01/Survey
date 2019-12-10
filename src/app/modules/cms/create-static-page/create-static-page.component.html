@@ -1,0 +1,35 @@
+<div class="w-100 m-b-100">
+  <section class="create-survey mt-5">
+    <div class="container pt-5">
+      <h3 class="page-title">Create Pages</h3>
+      <div class="row mb-4">
+        <form #editForm="ngForm" (ngSubmit)="editForm.form.valid && onFormSubmit()">
+          <label>English Title</label>
+          <input type="text" name="title_en" placeholder="Page Title in English" 
+              [(ngModel)]="title_en" class="form-control" [required]="true" #title_enF="ngModel"
+              [ngClass]="{ 'is-invalid': submitted && title_enF.errors }"/>
+          <label>Arabic Title</label>
+          <input type="text" name="title_ar" placeholder="Page Title in Arabic" 
+              [(ngModel)]="title_ar" class="form-control" [required]="true" #title_arF="ngModel"
+              [ngClass]="{ 'is-invalid': submitted && title_arF.errors }"/>
+
+          <label>Slug</label>
+          <input type="text" name="slug" placeholder="Page URL Slug" 
+              [(ngModel)]="slug" class="form-control" [required]="true" #slugF="ngModel"
+              [ngClass]="{ 'is-invalid': submitted && slugF.errors }"/>
+          
+          <label>English Content</label>
+          <ckeditor [editor]="enContent" [config]="enConfig" 
+            [(ngModel)]="enContentForm.editor" name="enContent"></ckeditor>
+          <label>Arabic Content</label>
+          <ckeditor [editor]="arContent" [config]="arConfig" [(ngModel)]="arContentForm.editor" name="arContent"></ckeditor>
+          
+          <label>Status</label>
+          <input type="checkbox" name="status" [(ngModel)]="status" class=""> <br />
+          <span class="error-span" *ngIf="editForm.submitted && !editForm.form.valid">Please fill in all fields</span>
+          <input type="submit" value="Publish">
+        </form>
+      </div>
+    </div>
+  </section>
+</div>

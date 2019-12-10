@@ -1,0 +1,189 @@
+<div class="container">
+  <div class="pt-5"></div>
+  <div class="pt-5"></div>
+  <h3 class="page-title">Company Profile</h3>
+  <form [formGroup]="companyForm" (ngSubmit)="onFormSubmit()">
+  <div class="datacontentHolder mb-2">
+    <div class="card">
+      <div class="card-body">
+        <div class="col-md-12">
+          <div class="row">
+            <div class="col-xl-2 col-md-4 p-1">
+              <div class="image-container"> <img src="http://placehold.it/150x150" id="imgProfile" class="img-thumbnail">
+                <div class="middle">
+                  <input type="button" class="btn btn-primary btn-xs" id="btnChangePicture" value="Change">
+                  <input type="file" style="display: none;" id="profilePicture" name="file">
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-10 col-md-8">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="name">Company Name</label>
+                    <input type="text" formControlName="name" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Full Name">
+                    <div class="is-invalid" *ngIf="name.invalid && (name.dirty || name.touched)">
+                      <div *ngIf="name.errors.required">
+                        Name is required.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group custom-selectHolder normalSelect">
+                    <label for="status">Type</label>
+                    <div class="wrap-select wrap-select-0"><select disabled class="form-control custom-select" name="type">
+                      <option value="1">Option 1</option>
+                      <option value="1">Option 2</option>
+                    </select><div class="custom-select">Select</div><ul class="custom-select-items"><li>Option 1</li><li>Option 2</li></ul></div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group custom-selectHolder normalSelect">
+                    <label for="status">Relation</label>
+                    <div class="wrap-select wrap-select-1"><select disabled class="form-control custom-select" name="type">
+                      <option value="34">Associations</option><option value="8">Bank</option><option value="36">Beware Buyer</option><option value="37">Beware Seller</option><option value="26">BMC</option><option value="7">Broker</option><option value="22">Charterd Accountant</option><option value="14">Clearing Agent</option><option value="29">Competitors</option><option value="13">Consultant</option><option value="9">Courier Agent</option><option value="39">Electrician</option><option value="23">Foreign Exchange</option><option value="6">General</option><option value="12">Hotel</option><option value="24">IMC</option><option value="28">Income Tax</option><option value="5">Indenting Agent</option><option value="48">indianfoundries.com</option><option value="38">IndianMetals.com</option><option value="41">Local Buyers</option><option value="18">New Buyer</option><option value="19">New Seller</option><option value="25">Off. Maintenance</option><option value="3">Other Buyer</option><option value="4">Other Seller</option><option value="1">Our Buyer</option><option value="2" selected="">Our Seller</option><option value="15">Personal</option><option value="40">Printer Toner</option><option value="27">Profession Tax</option><option value="16">Ship Co. Agent</option><option value="17">Ship Co/Lines</option><option value="47">stainlessindia.org</option><option value="20">Surveyors</option><option value="44">Targeted Buyers</option><option value="45">Targeted Sellers</option><option value="21">Travel Agent</option><option value="35">Travel Sites</option><option value="46">Warehouse</option><option value="30">Were Buyers</option><option value="31">Were Sellers</option>
+                    </select><div class="custom-select">Select</div><ul class="custom-select-items"><li>Associations</li><li>Bank</li><li>Beware Buyer</li><li>Beware Seller</li><li>BMC</li><li>Broker</li><li>Charterd Accountant</li><li>Clearing Agent</li><li>Competitors</li><li>Consultant</li><li>Courier Agent</li><li>Electrician</li><li>Foreign Exchange</li><li>General</li><li>Hotel</li><li>IMC</li><li>Income Tax</li><li>Indenting Agent</li><li>indianfoundries.com</li><li>IndianMetals.com</li><li>Local Buyers</li><li>New Buyer</li><li>New Seller</li><li>Off. Maintenance</li><li>Other Buyer</li><li>Other Seller</li><li>Our Buyer</li><li>Our Seller</li><li>Personal</li><li>Printer Toner</li><li>Profession Tax</li><li>Ship Co. Agent</li><li>Ship Co/Lines</li><li>stainlessindia.org</li><li>Surveyors</li><li>Targeted Buyers</li><li>Targeted Sellers</li><li>Travel Agent</li><li>Travel Sites</li><li>Warehouse</li><li>Were Buyers</li><li>Were Sellers</li></ul></div>
+                  </div>
+                  <div class="form-group custom-selectHolder normalSelect">
+                    <label for="status">Status</label>
+                    <div class="wrap-select wrap-select-2"><select disabled class="form-control custom-select" name="type">
+                      <option value="1">Option 1</option>
+                      <option value="1">Option 2</option>
+                    </select><div class="custom-select">Select</div><ul class="custom-select-items"><li>Option 1</li><li>Option 2</li></ul></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card mt-4 mb-5">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" formControlName="email" [ngClass]="{'is-invalid': email.invalid && email.touched, 
+              'is-valid': email.valid, '': email.untouched}" class="form-control" id="email" aria-describedby="email" placeholder="Email">
+              <div class="invalid-feedback" *ngIf="email.invalid && (email.dirty || email.touched)">
+                <div *ngIf="email.errors.required">
+                  Email is required.
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">School</label>
+              <input disabled type="text" class="form-control" id="school" aria-describedby="School" placeholder="School">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Qatar ID Number</label>
+              <input type="text" class="form-control" id="QID" aria-describedby="Qatar ID Number" placeholder="Qatar ID Number">
+            </div>
+            <div class="form-group custom-selectHolder normalSelect">
+              <label for="exampleInputPassword1">Nationality</label>
+              <div class="wrap-select wrap-select-3"><select disabled class="form-control custom-select" name="type">
+                <option value="1">Option 1</option>
+                <option value="1">Option 2</option>
+              </select><div class="custom-select">Select</div><ul class="custom-select-items"><li>Option 1</li><li>Option 2</li></ul></div>
+            </div>
+            <div class="form-group custom-selectHolder normalSelect">
+              <label for="exampleInputPassword1">Visa Status</label>
+              <div class="wrap-select wrap-select-4"><select disabled class="form-control custom-select" name="type">
+                <option value="1">Option 1</option>
+                <option value="1">Option 2</option>
+              </select><div class="custom-select">Select</div><ul class="custom-select-items"><li>Option 1</li><li>Option 2</li></ul></div>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Language</label>
+              <input type="text" disabled class="form-control" id="lang" aria-describedby="Language" placeholder="Language">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Hobby</label>
+              <input type="text" disabled class="form-control" id="hobby" aria-describedby="Hobby" placeholder="Hobby">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Note</label>
+              <input type="text" disabled class="form-control" id="note" aria-describedby="Note" placeholder="Note">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="exampleInputPassword1">Study</label>
+              <input type="text" disabled class="form-control" id="study1" placeholder="Study">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Password</label>
+              <input type="password" disabled class="form-control" id="exampleInputPassword1" placeholder="Password">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Confirm Password</label>
+              <input type="password" disabled class="form-control" id="exampleInputPassword2" placeholder="Password">
+            </div>
+            <div class="form-group">
+              <label for="phone">Telephone</label>
+              <input type="tel" formControlName="phone" [ngClass]="{'is-invalid': phone.invalid && phone.touched, 
+              'is-valid': phone.valid, '': phone.untouched}" class="form-control" id="Telephone" placeholder="Telephone">
+              <div class="invalid-feedback"  *ngIf="phone.invalid && (phone.dirty || phone.touched)">
+                <div *ngIf="phone.errors.required">
+                  Phone is required.
+                </div>
+                <div *ngIf="phone.errors.minlength">
+                  Phone must be at least 10 characters long.
+                </div>
+                <div *ngIf="phone.errors.maxlength">
+                  Phone must not be greater than 13 characters
+                </div>
+              </div>
+              
+            </div>
+            <div class="form-group">
+              <label for="address1">Address 1</label>
+              <input type="text" formControlName="address1" [ngClass]="{'is-invalid': address1.invalid && address1.touched, 
+              'is-valid': address1.valid, '': address1.untouched}" class="form-control" id="Address 1" placeholder="Address 1">
+              <div class="invalid-feedback" *ngIf="email.invalid && (email.dirty || email.touched)">
+                <div *ngIf="email.errors.required">
+                  Address 1 is required.
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="city">City</label>
+              <input type="text" formControlName="city" [ngClass]="{'is-invalid': city.invalid && city.touched, 
+              'is-valid': city.valid, '': city.untouched}" class="form-control" id="City" placeholder="City">
+              <div class="invalid-feedback" *ngIf="city.invalid && (city.dirty || city.touched)">
+                <div *ngIf="city.errors.required">
+                  City is required.
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="province">Province</label>
+              <input type="text" formControlName="province" [ngClass]="{'is-invalid': province.invalid && province.touched, 
+              'is-valid': province.valid, '': province.untouched}" class="form-control" id="Province" placeholder="Province">
+              <div class="invalid-feedback" *ngIf="province.invalid && (province.dirty || province.touched)">
+                <div *ngIf="province.errors.required">
+                  Province is required.
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="country">Country</label>
+              <input type="text" formControlName="country" [ngClass]="{'is-invalid': country.invalid && country.touched, 
+              'is-valid': country.valid, '': country.untouched}" class="form-control" id="Country" placeholder="Country">
+              <div class="invalid-feedback" *ngIf="country.invalid && (country.dirty || country.touched)">
+                <div *ngIf="country.errors.required">
+                  Country is required.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col text-align-center ">
+          <button type="submit" class="btn btn-primary float-right">Submit</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</form>
+</div>

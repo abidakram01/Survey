@@ -1,0 +1,81 @@
+<div class="card border-dark mt-3">
+  <div class="card-header">{{question.question}}</div>
+  <div class="card-body">
+    <div class="card-text">
+      <div class="form-check" *ngFor="let option of question.options">
+        <input class="form-check-input" type="radio" name="{{option.component_id}}" id="{{option.component_id}}" value="{{option.name}}">
+        <label class="form-check-label" for="checkbox">{{option.name}}</label>
+      </div>
+    </div>
+  </div>
+  <div class="card-header bg-transparent">
+    <button class="btn btn-primary mr-1 rounded" (click)="onQuestionEditBtnClick()" type="button"><i class="fa fa-edit"></i></button>
+    <button class="btn btn-primary mr-1 rounded" (click)="onQuestionDelete()" type="button"><i class="fa fa-trash-o"></i></button>
+    <button class="btn btn-primary mr-1 rounded" (click)="onQuestionDuplicate()" type="button"><i class="fa fa-copy"></i></button>
+  </div>
+</div>
+
+<ng-template #editQuestionModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">{{'design_survey.edit_qn' | translate}}n</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <form [formGroup]="inputForm" (ngSubmit)="oninputFormSubmit()">
+    <div class="modal-body" [class.text-right]="language == 'ar'">
+      <div class="col-md">
+        <!-- Question Label -->
+        <div class="form-group">
+          <label for="si-question-{{question.component_id}}">{{'design_survey.question' | translate}}</label>
+          <input autofocus type="text" class="form-control" formControlName="question" id="si-question-{{question.component_id}}"
+            placeholder="{{'design_survey.question' | translate}}">
+        </div>
+
+        <!-- Question Options -->
+        <div class="form-group">
+          <table>
+            <thead>
+              <tr>
+                <td>{{'design_survey.options' | translate}}</td>
+              </tr>
+            </thead>
+            <tbody>
+              <ng-container formArrayName="options">
+                <ng-container *ngFor="let option of optionForms.controls; let i = index; trackBy: optionTrackByFn">
+                    <tr [formGroupName]="i">
+                      <td>
+                        <input type="hidden" formControlName="component_id">
+                        <input type="hidden" formControlName="order">
+                        <input class="form-control form-control-sm" type="text" formControlName="name" placeholder="{{'design_survey.value' | translate}}">
+                      </td>
+                      <td>
+                        <button
+                          type="button"
+                          class="btn btn-sm btn-danger"
+                          (click)="onRemoveOption(option.get('component_id').value, i)" ><i class="fa fa-times-circle" aria-hidden="true"></i></button>
+                      </td>
+                    </tr>
+                </ng-container>
+              </ng-container>
+
+              <tr class="mt-4">
+                <td>
+                  <button type="button" class="btn btn-sm btn-success" (click)="onAddOption()" >{{'design_survey.add_new' | translate}}</button>
+                </td>
+                <td>
+                  <button  type="button" class="btn btn-sm btn-danger" (click)="onRemoveAllOption()">{{'design_survey.remove_all' | translate}}</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- /.Question Options -->
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-success">{{'design_survey.update_label' | translate}}</button>
+      <button type="button" class="btn btn-primary" (click)="modal.close('Close click')">{{'design_survey.close' | translate}}</button>
+    </div>
+  </form>
+</ng-template>

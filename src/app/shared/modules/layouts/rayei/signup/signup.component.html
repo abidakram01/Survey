@@ -1,0 +1,102 @@
+<section class="login___Section">
+  <div class="container">
+    <div class="row">
+      <div class="col-7 hidden__sm">
+        <figure class="paroller">
+          <img src="assets/img/banerleft.jpg" alt="">
+        </figure>
+      </div>
+      <div class="col-5">
+        <figcaption class="login-changes">
+
+          <h2>{{'auth_layout.signup_label' | translate}}</h2>
+
+          <!-- <div class="row activeLoginBtn">
+            <div class="col-md-6 ">
+              <button type="button" class="btn outling-btn active" [class.active]="type==='user'"
+                (click)="toggle('user')">USER</button>
+            </div>
+            <div class="col-md-6">
+              <button type="button" class="btn outling-btn" [class.active]="type==='company'"
+                (click)="toggle('company')">COMPANY</button>
+            </div>
+          </div> -->
+          <form [formGroup]="signupForm" (ngSubmit)="onSignup()">
+            <ngb-alert *ngIf="serverError" (close)="serverError=null" [type]="'danger'">{{ serverError }}
+            </ngb-alert>
+            <ngb-alert *ngIf="registrationStatus" (close)="registrationStatus=false" [type]="'success'">
+              {{'signup.registration_sucess_msg' | translate}}
+            </ngb-alert>
+
+            <div class="form__Group">
+
+              <!-- <input [(ngModel)]="type" type="hidden" formControlName="user_type"> -->
+
+              <input type="text" name="email" formControlName="email" required=""
+                placeholder="{{'signup.user_email_label' | translate}}"
+                [class.is-invalid]="email.invalid && (email.dirty || email.touched)"
+                [class.is-valid]="email.valid && (email.dirty || email.touched)">
+              <span *ngIf="email.invalid && (email.dirty || email.touched)" class="error-msg">
+                <span *ngIf="email.hasError('required')">
+                  {{ 'error_message.required_field' | translate }}
+                </span>
+                <span *ngIf="email.hasError('email')">
+                  {{ 'error_message.invalid_email' | translate }}
+                </span>
+              </span>
+            </div>
+            <div class="form__Group ">
+              <div class="input-with-icon">
+                <input type="{{passwordType}}" name="password" required=""
+                  placeholder="{{'signup.password_label' | translate}}"
+                  placeholder="{{'signup.password_label' | translate}}" formControlName="password" name="password"
+                  [class.is-invalid]="password.invalid && (password.dirty || password.touched)"
+                  [class.is-valid]="password.valid && (password.dirty || password.touched)">
+                <div class="btn btn-default icon hide-password" (click)="togglePasswordDisplay()"><span
+                    class="fa {{eyeImage}}" aria-hidden="true"></span>
+                </div>
+                <span *ngIf="password.invalid && (password.dirty || password.touched)" class="error-msg">
+                  <span *ngIf="password.hasError('required')">
+                    {{ 'error_message.required_field' | translate }}
+                  </span>
+                  <span *ngIf="password.hasError('minlength') && !password.hasError('required')">
+                    {{ 'error_message.password_min_length' | translate }}
+                  </span>
+                </span>
+              </div>
+            </div>
+
+            <p>
+              <!-- <input type="checkbox" name="tc_agree" class="custom-control-input form-control" id="tc_agree"
+                  [class.in-valid]="tc_agree.invalid && (tc_agree.dirty || tc_agree.touched)"
+                  formControlName="tc_agree"> -->
+              <a [routerLink]="['/page/privacy-policy']"
+                href="javascript:void(0);">{{'signup.terms_label' | translate}}</a>
+              <!-- <br>
+              <span *ngIf="tc_agree.invalid && (tc_agree.dirty || tc_agree.touched)" class="error-msg">
+                <span *ngIf="tc_agree.hasError('required')">
+                  {{ 'error_message.required_field' | translate }}
+                </span>
+              </span> -->
+            </p>
+
+            <div class="w-100 pb-4">
+              <div class="captcha">
+                <re-captcha (resolved)="resolved($event)" [siteKey]="captchaSiteKey"></re-captcha>
+              </div>
+              <span *ngIf="captchaError" class="error-msg">
+                {{ 'error_message.captcha_error' | translate }}
+              </span>
+            </div>
+            <div class="form__Submit text-center">
+              <input [disabled]="submitted" class="btn btn-danger ray-btn-red" type="submit" value="{{'signup.signup_btn' | translate}}">
+
+            </div>
+            <p class="text-center mt-3">{{'signup.have_account' | translate}}<a [routerLink]="['/login']"
+                href="javascript:void(0);">{{'auth_layout.login_label' | translate}}</a></p>
+          </form>
+        </figcaption>
+      </div>
+    </div>
+  </div>
+</section>

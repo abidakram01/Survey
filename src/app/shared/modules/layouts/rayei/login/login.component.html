@@ -1,0 +1,79 @@
+<section class="login___Section">
+  <div class="container">
+    <div class="row">
+      <div class="col-7 hidden__sm">
+        <figure class="paroller">
+          <img src="assets/img/banerleft.jpg" alt="">
+        </figure>
+      </div>
+      <div class="col-5">
+        <figcaption class="login-changes">
+          <h2> {{'auth_layout.login_label' | translate}} </h2>
+          <!-- <div class="row activeLoginBtn">
+              <div class="col-md-6 ">
+                <button type="button" class="btn outling-btn active" [class.active]="type==='user'"
+                  (click)="toggle('user')">USER</button>
+              </div>
+              <div class="col-md-6">
+                <button type="button" class="btn outling-btn" [class.active]="type==='company'"
+                  (click)="toggle('company')">COMPANY</button>
+              </div>
+            </div> -->
+          <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+            <p><span *ngIf="loginFail" class="alert alert-danger">{{'login.email_password_validate' | translate}}</span>
+            </p>
+            <div class="form__Group">
+
+              <!-- <input [(ngModel)]="type" type="hidden" formControlName="user_type"> -->
+
+              <input type="text" name="email" required="" formControlName="username"
+                placeholder="{{'auth_layout.email_label' | translate}}" formControlName="username"
+                [class.is-invalid]="username.invalid && (username.dirty || username.touched)"
+                [class.is-valid]="username.valid && (username.dirty || username.touched)">
+              <span *ngIf="username.invalid && (username.dirty || username.touched)" class="error-msg">
+                <span *ngIf="username.hasError('required')">
+                  {{ 'error_message.required_field' | translate }}
+                </span>
+                <span *ngIf="username.hasError('email')">
+                  {{ 'error_message.invalid_email' | translate }}
+                </span>
+              </span>
+            </div>
+            <div class="form__Group">
+              <div class="input-with-icon">
+                <input type="{{passwordType}}" name="email" required="" formControlName="password"
+                  placeholder="{{'auth_layout.password_label' | translate}}"
+                  [ngClass]="{ 'is-invalid-control': password.invalid && (password.touched || password.dirty) }">
+                <div class="btn btn-default icon hide-password" (click)="togglePasswordDisplay()"><span
+                    class="fa {{eyeImage}}" aria-hidden="true"></span>
+                </div>
+              </div>
+            </div>
+            <div class="row  mt-4">
+              <div class="col-md-6">
+                <span class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="customCheck1" formControlName="remember">
+                  <label class="custom-control-label" for="customCheck1"><span class="rembember_me_login">{{'login.remember_me' | translate}}</span></label>
+                </span>
+              </div>
+              
+            <div class="col-md-6">
+              <span class="form-bottom-message">
+                <a class="forgot__Password" [routerLink]="['/forget']"
+                  href="javascript:void(0);">{{'login.forgot_password_label' | translate}}</a>
+              </span>
+            </div>
+            </div>
+            
+
+
+            <div class="form__Submit text-center">
+              <input type="submit" [disabled]="submitted" value="{{'login.login_btn' | translate }}" class="btn btn-danger ray-btn-red"
+                required="">
+            </div>
+          </form>
+        </figcaption>
+      </div>
+    </div>
+  </div>
+</section>

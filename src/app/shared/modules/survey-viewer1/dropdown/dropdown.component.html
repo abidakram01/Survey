@@ -1,0 +1,14 @@
+<form [formGroup]="form">
+  <div class="form-wrap box-border">
+    <label class="question-label" style="font-size:18px;" for="">{{question.question}}</label>
+    <ng-container formArrayName="values" *ngFor="let value of values.controls; let i = index;">
+      <ng-container [formGroupName]="i">
+          <div class="form-check">
+          <select class="full-width has-padding has-border custom-select" formControlName="value">
+            <option *ngFor="let option of question.options" style="font-size:18px;" [ngValue]="option"> {{option.name}}  </option>
+          </select>
+        </div>
+      </ng-container>
+    </ng-container>
+  </div>
+</form>

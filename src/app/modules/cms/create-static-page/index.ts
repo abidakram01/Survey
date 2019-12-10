@@ -1,0 +1,1 @@
+export * from "./create-static-page.component";

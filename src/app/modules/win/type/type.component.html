@@ -1,0 +1,221 @@
+<div class="w-100 mt-5 pt-3">
+  <div class="page-head-holder">
+    <div class="container">
+      <!--<h3 class="page-title">Surveys</h3>-->
+    </div>
+  </div>
+</div>
+<div class="w-100">
+  <section class="create-survey mt-5 mb-5">
+    <div class="container pt-5" *ngIf="surveyData">
+      <div class="col-md-12 text-center" dir="{{selectLangFlag == 'ar'?'rtl':'ltr'}}">
+        <button class="filter-btn" data-toggle="portfilter" data-target="all" id='all'
+          (click)="showCategorySurveys($event)"> <span id='all'>{{'win_page.all_label' | translate }} </span></button>
+        <button class="filter-btn" [class.active]="category_id === surveyType.id" data-toggle="portfilter"
+          data-target="early" (click)="showCategorySurveys($event)" *ngFor="let surveyType of surveyTypes"
+          id='{{surveyType.id}}'> <span id='{{surveyType.id}}'>{{surveyType[useLang?.name]}}</span> </button>
+
+      </div>
+      <div class="row mb-5 pb-5">
+        <div class="col-xl-4 col-md-4 col-xs-6 thumb mt-3" data-tag='primary' *ngFor="let survey of surveyData"
+          dir="{{selectLangFlag=== 'ar'?'rtl':'ltr'}}">
+
+          <table class="table table-bordered table-striped text-center " dir="{{selectLangFlag === 'ar'?'rtl':'ltr'}}">
+            <tr>
+              <th colspan="3">
+                <!--  <a target="_blank" [routerLink]="['/chooselanguage', survey.url_code]"
+                  class="medium"> -->
+
+
+                <a target="_blank" [routerLink]="['/survey/attend', survey.url_code]" class="medium">{{survey.name.name_en | translate}}
+                </a>
+
+              </th>
+              <th>
+
+                {{survey.survey_type.name_en | translate}}
+
+              </th>
+              <!-- <th >
+      <span *ngIf="survey.survey_logo && staticImageUrl">
+        <img [src]="staticImageUrl + survey.survey_logo"  width="150">
+      </span>
+    </th> -->
+            </tr>
+            <tr>
+              <td>{{'win_page.closedate' | translate}}</td>
+
+              <td> {{'win_page.no_of_questions' | translate}}</td>
+              <td colspan="2"> {{'win_page.duration' | translate}}</td>
+            </tr>
+            <tr>
+
+              <td>{{survey.closes_on | date: 'dd/MM/yyyy'}}</td>
+              <td>
+
+                <span *ngFor="let pages of survey.questions">
+                  <span *ngFor="let question of pages.questions ; index as i; last as islast;">
+                    <span *ngIf="islast ">{{i + 1}}
+                    </span>
+                  </span>
+
+                </span>
+
+              </td>
+              <td colspan="2">{{survey.duration }}</td>
+            </tr>
+            <tr dir="{{selectLangFlag === 'ar'?'rtl':'ltr'}}">
+              <td> {{'win_page.prize' | translate}}</td>
+              <td colspan="4">{{survey.prize }}</td>
+            </tr>
+
+            <tr dir="{{selectLangFlag === 'ar'?'rtl':'ltr'}}">
+              <td> {{'win_page.share' | translate}}</td>
+
+              <td>
+                <!-- <div class="col align-self-center p-0 text-center" (click)="router.navigate(['/survey/share', survey.id])"><a href="javascript:void(0);"><i class="fa fa-share-alt" aria-hidden="true"></i>
+                            <p>{{'dash_board_page.share_survey' | translate}}</p>
+                            </a></div> -->
+                <a href="javascript:void(0);" (click)="showModal(socialSharePopup, shareType.social,survey.id)"
+                  class="text-wrap vcenter" data-toggle="modal">
+                  <h5> &nbsp;<i class="fa fa-share-alt" aria-hidden="true"></i></h5>
+                </a>
+              </td>
+              <td>
+                <a href="javascript:void(0);" (click)="showModal(webLinkPopup, shareType.link,survey.id)"
+                  class="text-wrap vcenter" data-toggle="modal">
+                  <h5> &nbsp;<i class="fa fa-link"></i></h5>
+                </a>
+              </td>
+              <td>
+                <a href="javascript:void(0);" (click)="showModal(emailSharePopup, shareType.email,survey.id)"
+                  class="text-wrap vcenter" data-toggle="modal">
+                  <h5> &nbsp;<i class="fa fa-envelope"></i></h5>
+                </a>
+              </td>
+
+            </tr>
+            <!-- <tr>
+    <td colspan="4">
+  <div class="col-xl-12 col-md-12 col-xs-12 thumb mt-3 text-center">
+     <a target="_blank" [routerLink]="['/survey/attend', survey.url_code]"
+                class="medium">{{'win_page.attend_survey_label' | translate}}<i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+            </div>
+    </td>
+  </tr> -->
+          </table>
+
+
+          <!-- Social Media Modal -->
+          <ng-template #socialSharePopup let-modal>
+            <div class="modal-header">
+              <h4 class="modal-title">{{'survey_share.share_survey_link_label'  | translate }}</h4>
+              <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body overflow-off">
+              <div class="row" id="shareLink">
+                <ul class="list-inline social-connect mx-auto justify-content-center">
+                  <li class="list-inline-item">
+                    <a href="https://www.facebook.com/sharer/sharer.php?u={{surveyShareUrl}}{{survey.url_code}}"
+                      target="_blank">
+                      <i class="fab fa-facebook-square"></i>
+                    </a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a href="https://www.linkedin.com/shareArticle?mini=true&url={{surveyShareUrl}}{{survey.url_code}}&title={{survey.name}}&summary=&source="
+                      target="_blank">
+                      <i class="fab fa-linkedin" aria-hidden="true"></i>
+                    </a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a href="https://twitter.com/home?status={{surveyShareUrl}}{{survey.url_code}}" target="_blank">
+                      <i class="fab fa-twitter" aria-hidden="true"></i>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-dark" ngbAutofocus
+                (click)="modal.close('Close click')">{{'survey_share.close_label'  | translate }}</button>
+            </div>
+          </ng-template>
+          <!-- Send by Email Modal -->
+          <ng-template #emailSharePopup let-modal>
+            <div class="modal-header">
+              <h4 class="modal-title">{{'survey_share.share_survey_link_label'  | translate }}</h4>
+              <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body overflow-off">
+              <form method="post">
+                <div class="row">
+                  <div class="col">
+                    <app-chips *ngFor="let email of toEmails" [chip]="email" (deletedChip)="chipDeleted($event)">
+                    </app-chips>
+                    <div class="form-group">
+                      <input type="text" name="toEmail" (keyup)="emailEntered($event)" [(ngModel)]="newEmail" id=""
+                        class="form-control" placeholder="To Emails">
+                    </div>
+                    <div class="form-group">
+                      <h5>{{'survey_share.download'  | translate }} <a
+                          href="https://rayeiresourcegroupdiag.blob.core.windows.net/rayei-prod/files/sample_csv.csv">
+                          {{'survey_share.csv_file'  | translate }}</a> {{'survey_share.or'  | translate }} <a
+                          href="https://rayeiresourcegroupdiag.blob.core.windows.net/rayei-prod/files/sample_xlsx.xlsx">
+                          {{'survey_share.xlsx_file'  | translate }}</a></h5>
+                      <label for="file-upload" class="custom-file-upload"> <i class="fa fa-upload"
+                          aria-hidden="true"></i>&nbsp;{{'survey_share.upload_label'  | translate }}</label>
+                      <input id="file-upload" type="file" (change)="uploader.uploadAll()" ng2FileSelect
+                        [uploader]="uploader" name="file">
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-success"
+                (click)="sendMails(modal,survey.id)">{{'survey_share.send_emails'  | translate }}</button>
+              <button type="button" class="btn btn-dark" ngbAutofocus
+                (click)="modal.close('Close click')">{{'survey_share.close_label'  | translate }}</button>
+            </div>
+          </ng-template>
+
+
+
+          <!-- Publish as WIN Modal -->
+          <ng-template #publishWinPopup let-modal>
+            <div class="modal-header">
+              <h4 class="modal-title">{{'survey_share.share_survey_link_label'  | translate }}</h4>
+              <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body overflow-off">
+              <div class="row">
+                <div class="col">
+                  <p>{{'survey_share.win_publish_pops_info'  | translate }}</p>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" (click)="publishSurveyAsWin(survey.id)"
+                class="btn btn-primary rounded-0 mr-auto ml-auto">{{'survey_share.submit_label'  | translate }}</button>
+              <button type="button" class="btn btn-dark" ngbAutofocus
+                (click)="modal.close('Close click')">{{'survey_share.close_label'  | translate }}</button>
+            </div>
+          </ng-template>
+
+
+        </div>
+      </div>
+      <div class="text-center" *ngIf="surveyData.length == 0" style="
+    margin: 35px;
+">
+        <h3>{{'win_page.error_message' | translate}}</h3>
+      </div>
+    </div>
+  </section>
+</div>

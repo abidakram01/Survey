@@ -1,0 +1,278 @@
+<div class="container" [ngClass]="{'mt-5 pt-4': !isManageSurvey }">
+  <div class="row">
+    <div class="col text-center" *ngIf="surveyShareUrl">
+      <h4>{{'survey_share.title' | translate }}</h4>
+    </div>
+    <div class="row mbr-justify-content-center mt-5">
+      <ng-container *ngIf="surveyShareUrl">
+        <div class="col mbr-col-md-10">
+          <div class="response-block h-75">
+            <a href="javascript:void(0);" (click)="showModal(emailSharePopup, shareType.email)"
+              class="text-wrap vcenter" data-toggle="modal">
+              <h5>{{'survey_share.send_by_email_label' | translate }}&nbsp;<i class="fa fa-envelope"></i></h5>
+              <p>{{'survey_share.send_by_email_info' | translate }}</p>
+            </a>
+          </div>
+        </div>
+        <div class="col mbr-col-md-10">
+          <div class="response-block h-75">
+            <a href="javascript:void(0);" (click)="showModal(webLinkPopup, shareType.link)" class="text-wrap vcenter"
+              data-toggle="modal">
+              <h5>{{'survey_share.get_web_link_label' | translate }}&nbsp;<i class="fa fa-link"></i></h5>
+              <p>{{'survey_share.get_web_link_label' | translate }}</p>
+            </a>
+          </div>
+        </div>
+        <div class="col mbr-col-md-10">
+          <div class="response-block h-75">
+            <a href="javascript:void(0);" (click)="showModal(QRCodeSharePopup, shareType.email)"
+              class="text-wrap vcenter" data-toggle="modal">
+              <h5>Share using QR Code &nbsp;&nbsp;<i class="fa fa-qrcode" aria-hidden="true"></i>
+              </h5>
+              <p>Share the survey link by sharing the QR code</p>
+            </a>
+          </div>
+        </div>
+        <div class="col mbr-col-md-10">
+          <div class="response-block h-75">
+            <a href="javascript:void(0);" (click)="showModal(socialSharePopup, shareType.social)"
+              class="text-wrap vcenter" data-toggle="modal">
+              <h5>{{'survey_share.social_media_share_label' | translate }} &nbsp;<i class="fa fa-share-alt"
+                  aria-hidden="true"></i></h5>
+              <p>{{'survey_share.social_media_share_info' | translate }}</p>
+            </a>
+          </div>
+        </div>
+        <div class="col mbr-col-md-10">
+          <div class="response-block h-75">
+            <a href="javascript:void(0);" (click)="showModal(publishWinPopup, shareType.email)"
+              class="text-wrap vcenter" data-toggle="modal">
+              <h5>Share code &nbsp;&nbsp;<i class="fa fa-share" aria-hidden="true"></i></h5>
+              <p>{{'survey_share.publish_as_win_survey_info' | translate }}</p>
+            </a>
+          </div>
+        </div>
+      </ng-container>
+
+      <!-- <ng-container *ngIf="!surveyShareUrl">
+        <div class="col-xl-12 mbr-col-md-10">
+          <div class="alert alert-warning" role="alert">
+            <h5>You have not saved the survey yet, please go back to the Design Survey and save the survey to activate sharing.</h5>
+          </div>
+        </div>
+      </ng-container> -->
+    </div>
+  </div>
+</div>
+
+<!-- Get Web Link Modal -->
+<ng-template #webLinkPopup let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">{{'survey_share.share_survey_link_label'  | translate }}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body overflow-off">
+    <form method="post">
+      <div class="row">
+        <div class="col">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <button (click)="copyInputMessage(shareLink)" class="btn btn-success" type="button"><i
+                  class="fa fa-files-o"
+                  aria-hidden="true"></i>&nbsp;{{'survey_share.copy_label'  | translate }}</button>
+            </div>
+            <input type="text" #shareLink readonly class="form-control share-link-input" [value]="surveyShareUrl"
+              aria-label="" aria-describedby="basic-addon1">
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-dark" ngbAutofocus
+      (click)="modal.close('Close click')">{{'survey_share.close_label'  | translate }}</button>
+  </div>
+</ng-template>
+
+<!-- Send by Email Modal -->
+<ng-template #emailSharePopup let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">{{'survey_share.share_survey_link_label'  | translate }}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body overflow-off">
+    <form method="post">
+      <div class="row">
+        <div class="col">
+          <app-chips *ngFor="let email of toEmails" [chip]="email" (deletedChip)="chipDeleted($event)"></app-chips>
+          <div class="form-group">
+            <input type="text" name="toEmail" (keyup)="emailEntered($event)" [(ngModel)]="newEmail" id=""
+              class="form-control" placeholder="To Emails">
+          </div>
+          <div class="form-group">
+            <!-- <h5>{{'survey_share.download'  | translate }} <a
+                href="https://rayeiresourcegroupdiag.blob.core.windows.net/rayei-prod/files/sample_csv.csv">
+                {{'survey_share.csv_file'  | translate }}</a> {{'survey_share.or'  | translate }} <a
+                href="https://rayeiresourcegroupdiag.blob.core.windows.net/rayei-prod/files/sample_xlsx.xlsx">
+                {{'survey_share.xlsx_file'  | translate }}</a></h5> -->
+            <!-- <label for="file-upload" class="custom-file-upload"> <i class="fa fa-upload"
+                aria-hidden="true"></i>&nbsp;{{'survey_share.upload_label'  | translate }}</label> -->
+            <!-- <input id="file-upload" type="file" (change)="uploader.uploadAll()" ng2FileSelect [uploader]="uploader"
+              name="file"> -->
+            <!-- <input id="file-field" name="file-field" (change)="uploadFile($event)" type="file" accept=".csv,.xlsx"> -->
+
+            <!-- <input type="file" ng2FileSelect [uploader]="uploader" (onFileSelected)="onFileSelected($event)" /> -->
+
+            <!-- <button type="button" class="btn btn-success btn-s" (click)="uploader.uplouploadAlladAll()"
+              [disabled]="!uploader.getNotUploadedItems().length">
+              <span class="glyphicon glyphicon-upload"></span> Upload
+            </button> -->
+            <!-- <button type="button" class="btn btn-warning btn-s"
+                        (click)="uploader.cancelAll()" [disabled]="!uploader.isUploading">
+                    <span class="glyphicon glyphicon-ban-circle"></span> Cancel all
+                </button> -->
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-success"
+      (click)="sendMails(modal)">{{'survey_share.send_emails'  | translate }}</button>
+    <button type="button" class="btn btn-dark" ngbAutofocus
+      (click)="modal.close('Close click')">{{'survey_share.close_label'  | translate }}
+    </button>
+  </div>
+</ng-template>
+
+<!--QR code scanner-->
+<div>
+  <ng-template #QRCodeSharePopup let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title align-center">Scan QR Code </h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body overflow-off align-center">
+      <div class="capture">
+        <ngx-qrcode [qrc-value]="qr_link">
+        </ngx-qrcode>
+      </div>
+      <div class="row">
+        <div class="col-md-6 align-right">
+          <i class="fa fa-download" aria-hidden="true" (click)="downloadPdf()"></i>
+        </div>
+        <div class="col-md-6 align-left">
+          <i class="fa fa-print" aria-hidden="true" (click)="downloadPdf()"></i>
+        </div>
+      </div>
+      <div class="row">
+        <h6 class="margin-left-qr">QR code direct link</h6>
+      </div>
+      <div class="row">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <button (click)="copyInputMessage(shareLink)" class="btn btn-success" type="button"><i class="fa fa-files-o"
+                aria-hidden="true"></i>&nbsp;{{'survey_share.copy_label'  | translate }}</button>
+          </div>
+          <input type="text" #shareLink readonly class="form-control share-link-input" [value]="surveyShareUrl"
+            aria-label="" aria-describedby="basic-addon1">
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</div>
+
+
+<!-- Social Media Modal -->
+<ng-template #socialSharePopup let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">{{'survey_share.share_survey_link_label'  | translate }}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body overflow-off">
+    <div class="row" id="shareLink">
+      <ul class="list-inline social-connect mx-auto justify-content-center">
+        <li class="list-inline-item">
+          <a href="https://www.facebook.com/sharer/sharer.php?u={{surveyShareUrl}}" target="_blank">
+            <i class="fab fa-facebook-square"></i>
+          </a>
+        </li>
+        <li class="list-inline-item">
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url={{surveyShareUrl}}&title={{surveyData.name.name_en}}&summary=&source="
+            target="_blank">
+            <i class="fab fa-linkedin" aria-hidden="true"></i>
+          </a>
+        </li>
+        <li class="list-inline-item">
+          <a href="https://twitter.com/home?status={{surveyShareUrl}}" target="_blank">
+            <i class="fab fa-twitter" aria-hidden="true"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-dark" ngbAutofocus
+      (click)="modal.close('Close click')">{{'survey_share.close_label'  | translate }}</button>
+  </div>
+</ng-template>
+
+<!-- Publish as WIN Modal -->
+<ng-template #publishWinPopup let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Share Code</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body overflow-off">
+    <form method="post">
+      <div class="row">
+        <div class="col">
+          <app-chips *ngFor="let email of toEmails" [chip]="email" (deletedChip)="chipDeleted($event)"></app-chips>
+          <div class="form-group">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <button (click)="copyInputMessage(shareLink)" class="btn btn-success" type="button"><i
+                    class="fa fa-files-o"
+                    aria-hidden="true"></i>&nbsp;{{'survey_share.copy_label'  | translate }}</button>
+              </div>
+              <input type="text" #shareLink readonly class="form-control share-link-input" [value]="randomNum"
+                aria-label="" aria-describedby="basic-addon1">
+            </div>
+            <div class="input-group mb-3">
+              Send code via mail now
+            </div>
+            <label> To :</label>
+            <div class="input-group mb-3">
+              <input type="text" name="toEmail" (keyup)="emailEntered($event)" [(ngModel)]="newEmail" id=""
+                class="form-control" placeholder="Add Email">
+            </div>
+            <!-- <label> Subject :</label>
+            <div class="input-group mb-3">
+              <input type="text" name="toEmail" (keyup)="emailEntered($event)" [(ngModel)]="newEmail" id=""
+                class="form-control" placeholder="Add Subject">
+            </div>
+            <label> Message :</label>
+            <input type="text" name="toEmail" (keyup)="emailEntered($event)" [(ngModel)]="newEmail" id=""
+              class="form-control" placeholder="You Message"> -->
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-success"
+      (click)="sendMails(modal)">{{'survey_share.send_emails'  | translate }}</button>
+    <button type="button" class="btn btn-dark" ngbAutofocus
+      (click)="modal.close('Close click')">{{'survey_share.close_label'  | translate }}</button>
+  </div>
+</ng-template>

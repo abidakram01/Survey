@@ -1,0 +1,15 @@
+.modal-lg {
+  min-width: 600px;
+}
+
+.modal-body {
+  max-height: 450px;
+  overflow: auto;
+}
+
+.btn-sm {
+  padding: .25rem .5rem !important;
+  font-size: .875rem;
+  line-height: 1.5;
+  border-radius: .2rem;
+}

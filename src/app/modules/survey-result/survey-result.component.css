@@ -1,0 +1,91 @@
+.bg-grey{
+    background: rgba(248, 248, 248);
+    border-radius: 5px;
+    height: auto; 
+    padding-top: 10px;
+    padding-bottom: 25px;
+}
+.inner-bg{
+    background: rgb(255, 255, 255);
+    margin: 30px;
+}
+.question-heading{
+    font-size: 25px;
+    font-weight: 600;
+    padding: 0px 20px 0px;
+}
+input[type="radio"], input[type="checkbox"]{
+    margin: 0px 10px 0px;
+    width: 23px;
+    height: 14px;
+}
+:host >>> .mat-ink-bar {
+    background-color: red !important;
+}
+:host >>> .mat-tab-label.mat-tab-label-active {
+    background-color: white;
+    color: red;
+}
+ ::ng-deep.mat-tab-label.mat-tab-disabled{
+    min-width: 0!important;
+    padding: 7px!important;
+    margin: 3px!important;
+   }
+.fa{
+    color: black;
+}
+:host >>> .mat-tab-label.mat-tab-disabled {
+    left : 46%;
+}
+
+
+.inner-bg-disable{
+    background: rgb(255, 255, 255);
+    height: 230px;
+    margin: 30px;
+    color: rgb(160, 160, 160)
+}
+
+.companybtn{
+	width: 120px;
+    height: 30px;
+    text-align: center;
+    line-height: 1.9;
+    font-size: 15px;
+    color: #fff;
+    background: #ad0203;
+    font-weight: 600;
+}
+.rating {
+    float:left;
+  }
+
+  /* :not(:checked) is a filter, so that browsers that don’t support :checked don’t 
+    follow these rules. Every browser that supports :checked also supports :not(), so
+    it doesn’t make the test unnecessarily selective */
+  .rating:not(:checked) > input {
+      position:absolute;
+      top:-9999px;
+      clip:rect(0,0,0,0);
+  }
+
+  .rating:not(:checked) > label {
+      float:right;
+      width:1em;
+      /* padding:0 .1em; */
+      overflow:hidden;
+      white-space:nowrap;
+      cursor:pointer;
+      font-size:300%;
+      /* line-height:1.2; */
+      color:#ddd;
+  }
+
+  .rating:not(:checked) > label:before {
+      content: '★ ';
+  }
+
+  .rating > input:checked ~ label {
+      color: dodgerblue;
+      
+  }

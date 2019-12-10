@@ -1,0 +1,221 @@
+<div class="scrollimageTop">
+    <img src="assets/img/humberger.svg" (click)="open()">
+    <nz-drawer
+      [nzClosable]="true"
+      [nzVisible]="visible"
+      nzPlacement="right"
+      (nzOnClose)="close()">
+
+      <a class="brand-icon-drawer" [routerLink]="['/']">
+        <img src="assets/img/rayeilogo.png">
+      </a>
+      
+      <div class="row drawer_menu">
+        <div class="col-md-12">
+          <h3><a [routerLink]="['/']">Home</a></h3>
+          <h3>Login</h3>
+          <h3>Sign Up</h3>
+          <h3>About Us</h3>
+          <h3>How It Works</h3>
+          <h3>Partner</h3>
+          <h3>Privacy & Policy</h3>
+          <h3>Careers</h3>
+          <h3>Contact</h3>
+        </div>
+      </div>
+
+      <footer>
+          <div class="col-md-12 text-center mb-5 mt-5">
+              <h4>Coming Soon</h4>
+            <img src="assets/img/AppStore.png" class="mb-3">
+
+            <img src="assets/img/playstore.png">
+          </div>
+      </footer>
+    </nz-drawer>
+  
+</div>
+<header id="header" class="main-menu">
+  <div class="container">
+    <div class="row">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="brand-icon" [routerLink]="['/']">
+          <img src="assets/img/rayeilogo.png" width="22%">
+        </a>
+        <div class="lang-holder" (click)="languageDrop()">
+          <div class="language-drp">
+            <!-- <i class="fa fa-globe" aria-hidden="true"></i> -->
+            <img (click)="flagchange" src="assets/img/qatar-flag.png" class="flag-1">
+            <span class="lang-selected">{{ selectLangFlag == 'en'? 'En' : ' العربية ' }}</span>
+          </div>
+          <ul class="lang-selector {{langDisplayClass}}">
+            <li (click)="selectLang('ar')"><a href="javascript:void(0);" id="langES" alt="Español">
+                <p> العربية</p>
+              </a>
+            </li>
+            <li (click)="selectLang('en')"><a href="javascript:void(0);" id="langEN" alt="English">
+                <p> English </p>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- <div class="lang-holder" (click)="languageDrop()">
+          <div class="language-drp">
+            <img src="assets/img/playstore_google.png" class="play-store-logo">
+            <img src="assets/img/apple.png" class="apple-logo">
+          </div>
+        </div> -->
+
+
+        <!-- <button *ngIf="!companySurveyFlag" [ngClass]="{'collapsed': !mobileViewMenu}" class="navbar-toggler mobile-menu"
+          type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+          aria-label="Toggle navigation" (click)="toggleMobileViewMenu()">
+          <span class="navbar-toggler-icon"></span>
+        </button> -->
+
+        <div class="collapse navbar-collapse" [ngClass]="{'show': mobileViewMenu}" id="navbarNav">
+          <ul id="mainnav" class="navbar-nav" (click)="toggleMobileViewMenu()">
+            <!-- <li *ngIf="userLoggedIn && userData" routerLinkActive="active">
+              <a class="nav-link" href="javascript:void(0);" *ngIf="userLoggedIn  && userData.is_company===true "
+                [routerLink]="['/dashboard/surveys/'+userData.user_id]">{{'navbar.labels.my_survey_button' | translate}}
+              </a>
+            </li> -->
+            <li *ngIf="userLoggedIn && userData" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+              <a class="nav-link" href="javascript:void(0);" *ngIf="userLoggedIn &&  userData.is_company===true"
+                [routerLink]="['/dashboard']">{{'navbar.labels.dash_board_button' | translate}} </a>
+            </li>
+            <li routerLinkActive="active">
+              <a class="nav-link" href="javascript:void(0);" [routerLink]="['/win/list-survey']">
+                {{'navbar.labels.win_button' | translate}} </a>
+            </li>
+            <li routerLinkActive="active" *ngIf="!userLoggedIn"> <a class="nav-link" [routerLink]="['/login']"
+                href="javascript:void(0);">{{'auth_layout.login_label' | translate}} </a> </li>
+            <li routerLinkActive="active" *ngIf="!userLoggedIn"> <a class="nav-link" [routerLink]="['/signup']"
+                href="javascript:void(0);">{{'auth_layout.signup_label' | translate}} </a> </li>
+            <li routerLinkActive="active" *ngIf="userLoggedIn && userData"> <a class="nav-link"
+                [routerLink]="['/account-summary']">{{ "navbar.labels.my_account" | translate }}</a> </li>
+            <li (click)="signOut()" *ngIf="userLoggedIn && userData"> <a
+                class="nav-link">{{ "navbar.labels.sign_out" | translate }}</a> 
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+
+
+
+<div class="header-space"></div>
+
+<div class="container-fluid p-0" [ngClass]="{'text-right': language === 'ar'}">
+  <app-loading-spinner></app-loading-spinner>
+  <router-outlet></router-outlet>
+</div>
+<footer>
+    <div class="container">
+        <div class="row">
+          <div class="col-md-12 text-center mb-5 mt-5">
+              <h4>Coming Soon</h4>
+            <img src="assets/img/AppStore.png" class="appstore">
+            <img src="assets/img/playstore.png" class="playstore">
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-12 bg-red">
+        <h4>{{'footer.labels.follow_us' | translate}}</h4>
+      </div>
+
+      <div class="col-xs-12 col-md-12  mx-md-0 media__ROw">
+      
+        <div class="clearfix media__col mb-4">
+          <ul>
+            <li class="ml-2 ml-lg-1"><a href="https://www.facebook.com/rayei.rayei.395"><i class="fab fa-facebook-f"
+                  aria-hidden="true"></i></a></li>
+            <li class="ml-2 ml-lg-1"><a href="https://twitter.com/rayei6"><i class="fab fa-twitter"
+                  aria-hidden="true"></i></a></li>
+            <li class="ml-2 ml-lg-1"><a href="https://www.instagram.com/Rayei_2019/"><i class="fab fa-instagram"></i></a>
+            </li>
+            <li class="ml-2 ml-lg-1"><a href="https://www.snapchat.com/add/rayei-feedback/"><i
+                  class="fab fa-snapchat-ghost"></i></a></li>
+  
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-md-12 bg-grey">
+        <!-- <h4>{{'footer.labels.menu' | translate}}</h4> -->
+<!--   
+        <ul class="list-inline text-center" *ngIf="language=='en'">
+          <li class="list-inline-item border_list pr-2 "><span></span><a [routerLink]="['/page/about-us']"
+              href="javascript:void(0);"> {{'home.about_us_title_label' | translate}}</a></li>
+          <li class="list-inline-item border_list pr-2"><a [routerLink]="['/contact-us']"
+              href="javascript:void(0);">{{'footer.labels.contact' | translate}}</a></li>
+          <li class="list-inline-item border_list pr-2"><a
+              [routerLink]="['/page/partner']">{{'footer.labels.partner' | translate}}</a></li>
+          <li class="list-inline-item  "> <a [routerLink]="['/page/privacy-policy']"
+              href="javascript:void(0);">{{'footer.labels.privacy' | translate}}</a>
+          </li>
+        </ul>
+        <ul class="list-inline text-center" *ngIf="language=='ar'">
+          <li class="list-inline-item border_list pr-2 "><span></span><a [routerLink]="['/page/privacy-policy']"
+              href="javascript:void(0);">{{'footer.labels.privacy' | translate}}</a></li>
+          <li class="list-inline-item border_list pr-2"><a
+              [routerLink]="['/page/partner']">{{'footer.labels.partner' | translate}}</a>
+          </li>
+          <li class="list-inline-item border_list pr-2"> <a [routerLink]="['/contact-us']"
+              href="javascript:void(0);">{{'footer.labels.contact' | translate}}</a></li>
+          <li class="list-inline-item  "> <a [routerLink]="['/page/about-us']" href="javascript:void(0);">
+              {{'home.about_us_title_label' | translate}}</a></li>
+        </ul> -->
+
+        <ul class="list-inline text-center footer-pages">
+          <li class="list-inline-item">
+            About Us | 
+          </li>
+          <li class="list-inline-item">
+            How It Works | 
+          </li>
+          <li class="list-inline-item">
+            Partner | 
+          </li>
+          <li class="list-inline-item">
+            Privacy & Policy | 
+          </li>
+
+          <li class="list-inline-item">
+            Careers | 
+          </li>
+
+          <li class="list-inline-item">
+            Contact 
+          </li>
+        </ul>
+
+
+      </div>
+
+      <div class="col-md-12 made-text">
+           Made for Arab World
+      </div>
+
+      <div class="row">
+      
+      <div class="col-md-6 mt-5 mb-3 text-center">
+        <a href="#"><img src="assets/img/qatar-flag.png" alt=""></a>
+      </div>
+      <div class="col-md-6 mt-5 mb-3 text-center">
+        <a href="#"><img src="assets/img/rayeilogo.png" width="144px" alt=""></a>
+      </div>
+    
+    </div>
+</footer>
+
+
+<div class="col-md-12 at-text">
+  <div class="">
+    &copy;	2019 Rayie.com
+  </div> 
+</div>

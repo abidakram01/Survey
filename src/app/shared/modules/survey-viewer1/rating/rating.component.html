@@ -1,0 +1,17 @@
+<form [formGroup]="form">
+  <div class="form-wrap box-border">
+    <label class="question-label" style="font-size:18px;" for="">{{question.question}}</label>
+    <div class="form-check rating-answer" [dir]="language === 'ar'? 'rtl' : 'ltl'">
+      <ng-container *ngFor="let option of question.options; let i=index;">
+        &nbsp;
+        <label class="toggle " style="font-size:18px;">
+          <input type="radio"  [value]="option" formControlName="values" id="customCheck-{{option.component_id}}">
+          &nbsp;<span
+            class="label-text fa input-group-title"
+            [ngClass]="{'fa-star-o': selectedIndex === -1 || i > selectedIndex, 'fa-star': i <= selectedIndex}"
+            (click)="onRatingSelection(i)" ></span>
+        </label>
+      </ng-container>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,132 @@
+@import '../../../../../assets/css/bootstrap.min.css';
+@import '../../../../../assets/css/font-style.css';
+@import '../../../../../assets/css/styles.css';
+@import '../../../../../assets/css/custom.css';
+@import '../../../../../assets/css/app.css';
+
+/* .lang-text {
+    text-transform: none !important;
+} */
+
+
+/* css for select box in signup page */
+/* .form select.has-padding {
+    padding: 16px 20px 16px 50px;
+}
+
+.form select.has-border {
+    border: 1px solid #800000;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+}
+
+.form select.full-width {
+    width: 100%;
+}
+
+.form select {
+    margin: 0;
+    padding: 0;
+    border-radius: 0.25em;
+} */
+
+
+
+.appstore{
+    width: 20%;
+    margin-right: 30px;
+}
+
+.playstore{
+    width: 20%;
+}
+
+.scrollimageTop img {
+    width: 60%;
+    height: auto;
+    position: relative;
+    top: 30px;
+    right: 27px;
+}
+
+.scrollimageTop img > .active {
+    top: 70px;
+    
+}
+
+.bg-red{
+    background: #ad0203;
+    height: 51px;
+}
+
+.bg-red h4{
+    line-height: 2.7;
+    color: #fff;
+}
+
+.language-drp{
+    width: 160px !important;
+}
+
+.flag-1{
+    width: 40px;
+    float: left;
+}
+
+.bg-grey{
+    height: 51px;
+    line-height: 2.7;
+    color: #000;
+    background: #f1eeee;
+}
+
+.footer-pages{
+    line-height: 4;
+}
+
+.drawer_menu h3{
+    line-height: 2.5;
+    color: #000;
+    font-size: 17px
+}
+
+
+.drawer_menu a{
+    color: #000;
+}
+
+.brand-icon-drawer img{
+    width: 75%;
+    position: relative;
+    top: -13px;
+}
+.play-store-logo{
+    width: 30px;
+    margin-right: 12px;
+}
+
+.apple-logo{
+    width: 30px;
+
+}
+
+.made-text{
+    background: #000;
+    color: #fff;
+    font-size: 16px;
+    line-height: 3.4;
+    font-weight: 600;
+    text-align: center;
+}
+
+
+.at-text{
+    color: #000;
+    font-size: 16px;
+    line-height: 2;
+    text-align: center;
+    background: #f1eeee;
+}

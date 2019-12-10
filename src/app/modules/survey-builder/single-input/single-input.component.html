@@ -1,0 +1,45 @@
+<div class="card border-dark mt-3">
+  <div class="card-header">
+    {{question.question}}
+  </div>
+  <div class="card-body">
+    <p class="card-text">
+      <input class="form-control form-control" placeholder="{{'design_survey.answer' | translate}}" type="text">
+    </p>
+  </div>
+  <div class="card-header bg-transparent">
+    <button class="btn btn-primary mr-1 rounded" (click)="onQuestionEditBtnClick()" type="button"><i class="fa fa-edit"></i></button>
+    <button class="btn btn-primary mr-1 rounded" (click)="onQuestionDelete()" type="button"><i class="fa fa-trash-o"></i></button>
+    <button class="btn btn-primary mr-1 rounded" (click)="onQuestionDuplicate()" type="button"><i class="fa fa-copy"></i></button>
+  </div>
+</div>
+
+<ng-template #editQuestionModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">{{'design_survey.edit_qn' | translate}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <form [formGroup]="singleInputForm" (ngSubmit)="onFormSubmit()">
+    <div class="modal-body" [class.text-right]="language === 'ar'">
+      <div class="col-md">
+          <div class="form-group">
+            <label for="si-question-{{question.component_id}}">{{'design_survey.question' | translate}}</label>
+            <input
+              type="text"
+              class="form-control"
+              name="singleInput"
+              autofocus
+              formControlName="singleInput"
+              id="si-question-{{question.component_id}}"
+              placeholder="{{'design_survey.question' | translate}}">
+          </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-success">{{'design_survey.update_label' | translate}}</button>
+      <button type="button" class="btn btn-primary" (click)="modal.close('Close click')">{{'design_survey.close' | translate}}</button>
+    </div>
+  </form>
+</ng-template>
